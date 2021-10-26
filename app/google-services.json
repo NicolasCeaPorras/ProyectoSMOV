@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "918143016084",
+    "project_id": "proyectosmov-bbe75",
+    "storage_bucket": "proyectosmov-bbe75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918143016084:android:02579faf3cdb23ed5a6881",
+        "android_client_info": {
+          "package_name": "com.example.proyectosmov"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918143016084-s8glpma64b04bogiqhv49esusjdct79n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuxuMiDLYdsQww8kPXCoYRJ-jKVl286U8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918143016084-s8glpma64b04bogiqhv49esusjdct79n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

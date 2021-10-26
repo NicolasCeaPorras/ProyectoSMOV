@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
 
     <TextView
         android:id="@+id/textView"
@@ -16,37 +14,22 @@
         android:layout_marginLeft="15dp"
         android:fontFamily="sans-serif-black"
         android:textSize="28sp"
-        android:textColor="@android:color/holo_blue_dark"
-        />
+        android:textColor="@android:color/holo_blue_dark"/>
 
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="115dp"
-        android:layout_height="79dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="49dp"
-
-        android:text="@string/entrada"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="141dp" />
+    android:orientation="horizontal"
+    android:gravity="center">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonFichar"
         android:layout_width="115dp"
         android:layout_height="79dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginLeft="60dp"
-        android:text="@string/salida"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="141dp" />
+        android:text="@string/entrada" />
 
 </LinearLayout>
+
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -66,7 +49,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="20dp">
 
 
         <ImageView
@@ -94,20 +77,71 @@
     </TextView>
 </LinearLayout>
     <LinearLayout
+        android:background="@drawable/back"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@android:drawable/presence_invisible"></ImageView>
+
+                <TextView
+                    android:text="@string/horaentrada"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="160dp"
+                    android:layout_height="60dp"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="20sp">
+                </TextView>
+
+            <TextView
+                android:text="Hora"
+                android:layout_marginLeft="60dp"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:fontFamily="sans-serif-black"
+                android:textSize="20sp">
+            </TextView>
+
+
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="?attr/homeAsUpIndicator"></ImageView>
+
+            <TextView
+                android:text="@string/horasalida"
+                android:layout_marginLeft="20dp"
+
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:fontFamily="sans-serif-black"
+                android:textSize="20sp">
+
+            </TextView>
+            <TextView
+                android:layout_marginLeft="60dp"
+                android:text="Hora"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:fontFamily="sans-serif-black"
+                android:textSize="20sp">
+            </TextView>
         </LinearLayout>
     </LinearLayout>
 
