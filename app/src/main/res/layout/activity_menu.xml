@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/fondo"
     android:orientation="vertical"
+
     tools:context=".menu">
 
     <LinearLayout
@@ -32,7 +34,8 @@
             android:layout_marginTop="33pt"
             android:gravity="center"
             android:layout_weight="1"
-            android:text="Fichar" />
+            android:textColor="@color/black"
+            android:text="@string/fichar" />
 
     </LinearLayout>
     <LinearLayout
@@ -47,7 +50,7 @@
             android:layout_height="50pt"
             android:layout_marginTop="17pt"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_month" />
+            app:srcCompat="@android:drawable/ic_menu_agenda" />
 
         <TextView
             android:id="@+id/textoAgenda"
@@ -57,7 +60,8 @@
             android:layout_marginTop="33pt"
             android:gravity="center"
             android:layout_weight="1"
-            android:text="Agenda" />
+            android:textColor="@color/black"
+            android:text="@string/agenda" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -81,7 +85,8 @@
             android:layout_marginTop="33pt"
             android:gravity="center"
             android:layout_weight="1"
-            android:text="Vacaciones" />
+            android:textColor="@color/black"
+            android:text="@string/vacaciones" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -105,6 +110,7 @@
             android:layout_marginTop="33pt"
             android:gravity="center"
             android:layout_weight="1"
-            android:text="Cerrar sesión" />
+            android:textColor="@color/black"
+            android:text="@string/cerrar_sesion" />
     </LinearLayout>
 </LinearLayout>
