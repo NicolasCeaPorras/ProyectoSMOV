@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">ProyectoSMOV</string>
     <string name="entrada">Entrada</string>
-    <string name="salida">Salida</string>
     <string name="fichar">Fichar</string>
     <string name="selOfic">Selecciona una Oficina</string>
     <string name="hora">Actualmente son las:</string>
+    <string name="horaentrada">Hora de entrada:</string>
+    <string name="horasalida">Hora de salida:</string>
 </resources>
