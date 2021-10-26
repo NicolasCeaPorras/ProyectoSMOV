@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/fondo">
 
     <TextView
         android:id="@+id/textView"
@@ -61,18 +62,31 @@
     </LinearLayout>
 
 <LinearLayout
-    android:layout_width="fill_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:background="@drawable/back"
+    >
 
     <TextView
-        android:background="@drawable/back"
         android:text="@string/hora"
         android:layout_width="240dp"
-        android:layout_height="100dp"
+        android:layout_height="40dp"
         android:fontFamily="sans-serif-black"
-        android:textSize="22sp">
+        android:textSize="22sp"
+        android:layout_marginLeft="5dp">
+
+    </TextView>
+    <TextView
+        android:id="@+id/actualhora"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:textSize="22sp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginBottom="10dp">
 
     </TextView>
 </LinearLayout>
@@ -83,6 +97,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -117,7 +132,8 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
             <ImageView
                 android:layout_width="60dp"

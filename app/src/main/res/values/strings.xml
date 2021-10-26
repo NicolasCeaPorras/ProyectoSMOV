@@ -8,4 +8,6 @@
     <string name="agenda">Agenda</string>
     <string name="vacaciones">Vacaciones</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="horaentrada">Hora de entrada:</string>
+    <string name="horasalida">Hora de salida:</string>
 </resources>
