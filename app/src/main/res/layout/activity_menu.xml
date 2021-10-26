@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".menu">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15pt"
+        tools:context=".menu">
+
+
+        <ImageView
+            android:id="@+id/imagenFichar"
+            android:layout_width="21dp"
+            android:layout_height="50pt"
+            android:layout_marginTop="17pt"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_myplaces" />
+
+        <TextView
+            android:id="@+id/textoFichar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11pt"
+            android:layout_marginTop="33pt"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Fichar" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:context=".menu">
+
+        <ImageView
+            android:id="@+id/imagenAgenda"
+            android:layout_width="wrap_content"
+            android:layout_height="50pt"
+            android:layout_marginTop="17pt"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_month" />
+
+        <TextView
+            android:id="@+id/textoAgenda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11pt"
+            android:layout_marginTop="33pt"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Agenda" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:context=".menu">
+
+        <ImageView
+            android:id="@+id/imagenVacaciones"
+            android:layout_width="80dp"
+            android:layout_height="50pt"
+            android:layout_marginTop="17pt"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_mapmode" />
+
+        <TextView
+            android:id="@+id/textoVacaciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11pt"
+            android:layout_marginTop="33pt"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Vacaciones" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:context=".menu">
+
+        <ImageView
+            android:id="@+id/imagenCerrarSesion"
+            android:layout_width="103dp"
+            android:layout_height="50pt"
+            android:layout_marginTop="17pt"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+        <TextView
+            android:id="@+id/textoCerrarSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11pt"
+            android:layout_marginTop="33pt"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Cerrar sesión" />
+    </LinearLayout>
+</LinearLayout>
