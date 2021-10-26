@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/fondo">
 
     <EditText
         android:id="@+id/passwordUsuario"
@@ -40,7 +41,10 @@
         app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.31"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="7pt"/>
 
     <TextView
         android:id="@+id/explicacionNombreUsuario"
@@ -52,7 +56,9 @@
         app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintVertical_bias="0.384"
+        android:textColor="@color/black"
+        />
 
     <TextView
         android:id="@+id/explicacionPassword"
@@ -64,7 +70,9 @@
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.58" />
+        app:layout_constraintVertical_bias="0.58"
+        android:textColor="@color/black"
+        />
 
     <CheckBox
         android:id="@+id/checkRecordarUsuario"
@@ -88,7 +96,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintVertical_bias="0.939"
+        android:backgroundTint="#2196F3"/>
 
     <ImageView
         android:id="@+id/imageView6"
