@@ -4,4 +4,5 @@
     <string name="salida">Salida</string>
     <string name="fichar">Fichar</string>
     <string name="selOfic">Selecciona una Oficina</string>
+    <string name="hora">Actualmente son las:</string>
 </resources>
