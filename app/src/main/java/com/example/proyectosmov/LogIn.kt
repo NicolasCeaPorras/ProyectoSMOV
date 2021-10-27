@@ -51,7 +51,7 @@ class LogIn : AppCompatActivity() {
     }
 
     private fun showMenu(email: String){
-        val menuIntent = Intent(this, menu::class.java).apply{
+        val menuIntent = Intent(this, Menu::class.java).apply{
             putExtra("email", email)
         }
         startActivity(menuIntent)

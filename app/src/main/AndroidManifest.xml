@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoSMOV">
         <activity
-            android:name=".menu"
+            android:name=".Menu"
+            android:exported="false" />
+        <activity
+            android:name=".FicharLogic"
             android:exported="false" />
         <activity
             android:name=".LogIn"
