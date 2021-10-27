@@ -14,9 +14,24 @@ import java.util.Locale;
 
 public class FicharLogic extends AppCompatActivity {
     TextView textoHora;
-    private boolean mActivo;
+    private boolean activo;
     private final Handler mHandler;
     Date hora;
+    //Referencia usada para comprender el hilo: https://stackoverflow.com/questions/6400846/updating-time-and-date-by-the-second-in-android
+    private final Runnable mRunnable = new Runnable() {
+        public void run() {
+            if (activo) {
+                if (textoHora != null) {
+                    //Actualizamos la hora, en funcion del formato, HH:mm:ss, y lo ejecutamos en el manejador con el runnable.
+                    hora=Calendar.getInstance().getTime();
+                    String tiempoActual = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(hora);
+                    textoHora.setText(tiempoActual);
+                }
+                mHandler.postDelayed(mRunnable, 1000);
+            }
+        }
+    };
+
     public FicharLogic() {
         mHandler = new Handler();
     }
@@ -29,29 +44,11 @@ public class FicharLogic extends AppCompatActivity {
 
         // Enlazar views
         textoHora = (TextView) findViewById(R.id.actualhora);
-        iniciarHora();
-
+        actualizarHora();
 
     }
-    /*Basado en este ejemplo: https://stackoverflow.com/questions/6400846/updating-time-and-date-by-the-second-in-android*/
-    private final Runnable mRunnable = new Runnable() {
-        public void run() {
-            if (mActivo) {
-                if (textoHora != null) {
-                    //Obtenemos la hora del sistema y la salida tiene el formato HH:mm:ss,
-                    // despues invocamos el Runnable con un delay de 1 segundo para que se actualice de forma correcta.
-                    hora=Calendar.getInstance().getTime();
-                    String tiempoActual = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(hora);
-                    textoHora.setText(tiempoActual);
-                }
-                mHandler.postDelayed(mRunnable, 1000);
-            }
-        }
-    };
-
-    private void iniciarHora(){
-        mActivo= true;
+    private void actualizarHora(){
+        activo=true;
         mHandler.post(mRunnable);
     }
-
 }
