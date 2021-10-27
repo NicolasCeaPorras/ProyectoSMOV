@@ -13,11 +13,12 @@ public class menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         getSupportActionBar().hide();
-
-        LinearLayout fichar = findViewById(R.id.fichar);
     }
-
+    //Evento que al hacer click te lleva a la pantalla de fichar
     public void clickFichar (View v){
         startActivity(new Intent(menu.this,FicharLogic.class));
     }
+
+    //Evento que al hacer click te cierra la sesion y te redirecciona al login
+    public void clickCerrarSesion(View v){startActivity(new Intent(menu.this,LogIn.class));}
 }
