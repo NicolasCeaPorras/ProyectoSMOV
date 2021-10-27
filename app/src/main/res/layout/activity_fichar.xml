@@ -25,6 +25,7 @@
 
     <Button
         android:id="@+id/buttonFichar"
+        android:onClick="onClick"
         android:layout_width="115dp"
         android:layout_height="79dp"
         android:text="@string/entrada" />
@@ -118,6 +119,7 @@
                 </TextView>
 
             <TextView
+                android:id="@+id/horaentrada"
                 android:text="Hora"
                 android:layout_marginLeft="60dp"
                 android:layout_width="100dp"
@@ -152,6 +154,7 @@
 
             </TextView>
             <TextView
+                android:id="@+id/horasalida"
                 android:layout_marginLeft="60dp"
                 android:text="Hora"
                 android:layout_width="100dp"
