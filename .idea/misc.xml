@@ -5,12 +5,15 @@
       <map>
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_fichar.xml" value="0.1" />
+        <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_ficho.xml" value="0.1" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/fichar.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/Gus/Documents/Universidad/SMOV/Practica Final/ProyectoSMOV/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Gus/Documents/Universidad/SMOV/Practica Final/ProyectoSMOV/app/src/main/res/layout/activity_menu.xml" value="0.176" />
+        <entry key="..\:/Users/nicol/Desktop/Ingenieria_Informatica/4_CURSO/ProyectoSMOV/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/nicol/Desktop/Ingenieria_Informatica/4_CURSO/SMOV/app/src/main/res/layout/activity_fichar.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/nicol/Desktop/Ingenieria_Informatica/4_CURSO/SMOV/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/nicol/Desktop/Ingenieria_Informatica/4_CURSO/SMOV/app/src/main/res/layout/activity_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
