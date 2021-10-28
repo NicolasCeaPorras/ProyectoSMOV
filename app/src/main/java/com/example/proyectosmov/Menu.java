@@ -11,15 +11,12 @@ public class Menu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        InteraccionBD interaccion = new InteraccionBD();
         setContentView(R.layout.activity_menu);
         getSupportActionBar().hide();
         Bundle bundle = this.getIntent().getExtras();
         TextView email = findViewById(R.id.textoEmail);
         TextView nombre = findViewById(R.id.textoNombre);
         email.setText("Email: "+bundle.getString("email"));
-        nombre.setText("Nombre: "+ interaccion.leerDatos("usuarios","00001","nombre"));
-
     }
     //Evento que al hacer click te lleva a la pantalla de fichar
     public void clickFichar (View v){
