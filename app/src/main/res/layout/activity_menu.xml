@@ -129,4 +129,28 @@
             android:textColor="@color/black"
             android:text="@string/cerrar_sesion" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:context=".Menu">
+    <TextView
+        android:id="@+id/textoEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11pt"
+        android:layout_marginTop="22pt"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/textoNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11pt"
+            android:layout_marginTop="22pt"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/black"/>
+    </LinearLayout>
 </LinearLayout>
