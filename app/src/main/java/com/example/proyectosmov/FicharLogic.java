@@ -1,5 +1,6 @@
 package com.example.proyectosmov;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+
 
 public class FicharLogic extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "FicharLogic";
@@ -53,8 +56,23 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
         hSalida = (TextView) findViewById(R.id.horasalida);
         entrada.setOnClickListener(this);
         actualizarHora();
+        // Reloj parte automatico
+        // //Referencia: De donde viene el codigo: https://github.com/TurkiTAK/vector-analog-clock
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.HOUR,0);
+
+        MyVectorClock vectorAnalogClock = findViewById(R.id.clock);
+
+        //customization
+        vectorAnalogClock.setCalendar(calendar)
+                //.setDiameterInDp(150)
+                .setOpacity(1.0f)
+                .setShowSeconds(true)
+                .setColor(Color.BLACK);
 
     }
+
+
 
     private void actualizarHora() {
         activo = true;
