@@ -9,7 +9,7 @@ class InteraccionBD {
 
     fun leerDatos(coleccion: String, documento: String, campo: String) : String{
         var consulta = ""
-        db.collection("usuarios").document("email").get().addOnSuccessListener{
+        db.collection(coleccion).document(documento).get().addOnSuccessListener{
             consulta = it.get(campo) as String
         }
         if(consulta.equals("")){
