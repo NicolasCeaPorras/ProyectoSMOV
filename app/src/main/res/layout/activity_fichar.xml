@@ -124,7 +124,7 @@
             <TextView
                 android:id="@+id/horaentrada"
                 android:text="Hora"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="30dp"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:fontFamily="sans-serif-black"
@@ -158,7 +158,7 @@
             </TextView>
             <TextView
                 android:id="@+id/horasalida"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="30dp"
                 android:text="Hora"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
