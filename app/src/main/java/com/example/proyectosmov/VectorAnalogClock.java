@@ -364,7 +364,7 @@ public abstract class VectorAnalogClock extends RelativeLayout {
         //every 1 minute moves 6 degrees every minute
         //every 1 hour moves by 30 degrees every 1 hour
         //Seconds Degrees
-        float degrees = curSecond * 6 + 0.006f * curMillis;
+        float degrees = curSecond * 6 + 0.006f * curMillis; //Modificado para quitar milisegundos
         long duration = 1000 * 60;
 
         Animation positioner = new RotateAnimation(0,degrees, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF,0.5f);

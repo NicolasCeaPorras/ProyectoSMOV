@@ -5,12 +5,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -23,6 +28,8 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
     TextView textoHora, hEntrada, hSalida;
     private boolean activo;
     private final Handler mHandler;
+    MyVectorClock vectorAnalogClock;
+    Spinner sLista;
     Date hora;
     //Referencia usada para comprender el hilo: https://stackoverflow.com/questions/6400846/updating-time-and-date-by-the-second-in-android
     private final Runnable mRunnable = new Runnable() {
@@ -33,6 +40,8 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                     hora = Calendar.getInstance().getTime();
                     String tiempoActual = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(hora);
                     textoHora.setText(tiempoActual);
+
+
                 }
                 mHandler.postDelayed(mRunnable, 1000);
             }
@@ -61,7 +70,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.HOUR,0);
 
-        MyVectorClock vectorAnalogClock = findViewById(R.id.clock);
+        vectorAnalogClock = findViewById(R.id.clock);
 
         //customization
         vectorAnalogClock.setCalendar(calendar)
@@ -69,6 +78,29 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                 .setOpacity(1.0f)
                 .setShowSeconds(true)
                 .setColor(Color.BLACK);
+
+
+        //Actualizar Spinner
+         sLista= findViewById(R.id.selOficina);
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Oficina 1");
+        arrayList.add("Oficina 2");
+        arrayList.add("Teletrabajo");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sLista.setAdapter(arrayAdapter);
+        sLista.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Actualizado el tiempo cuando se selecciona para eliminar el Bug #01 del Reloj.
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.HOUR,0);
+                vectorAnalogClock.setCalendar(calendar);
+            }
+            @Override
+            public void onNothingSelected(AdapterView <?> parent) {
+            }
+        });
 
     }
 
