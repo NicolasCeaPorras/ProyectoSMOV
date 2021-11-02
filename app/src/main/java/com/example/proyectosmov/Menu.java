@@ -22,7 +22,10 @@ public class Menu extends AppCompatActivity {
     public void clickFichar (View v){
         startActivity(new Intent(Menu.this,FicharLogic.class));
     }
-
     //Evento que al hacer click te cierra la sesion y te redirecciona al login
     public void clickCerrarSesion(View v){startActivity(new Intent(Menu.this,LogIn.class));}
+    //Evento que al hacer click te lleva a la pantalla de Agenda
+    public void clickAgenda (View v){ startActivity(new Intent(Menu.this,AgendaActivity.class)); }
+    //Evento que al hacer click te cierra la sesion y te redirecciona a la pantalla de Vacaciones
+    public void clickVacaciones(View v){startActivity(new Intent(Menu.this,VacacionesActivity.class));}
 }

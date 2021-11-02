@@ -10,4 +10,8 @@
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="horaentrada">Hora de entrada:</string>
     <string name="horasalida">Hora de salida:</string>
+    <string name="nota">Escribe la nota que quieres:</string>
+    <string name="diasvaca"> DIAS DISPONIBLES: </string>
+    <string name="fechaSal">FECHA DE SALIDA: </string>
+    <string name="fechaReg">FECHA DE REGRESO: </string>
 </resources>
