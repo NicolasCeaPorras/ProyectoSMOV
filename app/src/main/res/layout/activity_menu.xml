@@ -7,9 +7,54 @@
     android:layout_height="fill_parent"
     android:background="@drawable/fondo"
     android:orientation="vertical"
-
     tools:context=".Menu">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:context=".Menu">
+
+        <ImageView
+            android:id="@+id/imagenPerfil"
+            android:layout_width="112dp"
+            android:layout_height="40pt"
+            android:layout_marginTop="13pt"
+            android:layout_marginBottom="13pt"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icono_perfil" />
+
+        <LinearLayout
+            android:layout_width="232dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            tools:context=".Menu">
+
+            <TextView
+                android:id="@+id/textoNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="11pt" />
+
+            <TextView
+                android:id="@+id/textoEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/dark_grey"
+                android:textSize="8pt" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#505050"/>
     <LinearLayout
         android:id="@+id/fichar"
         android:onClick="clickFichar"
@@ -21,10 +66,10 @@
 
         <ImageView
             android:id="@+id/imagenFichar"
-            android:layout_width="19dp"
-            android:layout_height="40pt"
-            android:layout_marginTop="13pt"
-            android:layout_marginBottom="13pt"
+            android:layout_width="15dp"
+            android:layout_height="35pt"
+            android:layout_marginTop="7pt"
+            android:layout_marginBottom="7pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_fichar" />
 
@@ -32,7 +77,7 @@
             android:id="@+id/textoFichar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="27pt"
+            android:layout_marginTop="18pt"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/fichar"
@@ -53,10 +98,10 @@
 
         <ImageView
             android:id="@+id/imagenAgenda"
-            android:layout_width="39dp"
-            android:layout_height="35pt"
-            android:layout_marginTop="11pt"
-            android:layout_marginBottom="11pt"
+            android:layout_width="34dp"
+            android:layout_height="30pt"
+            android:layout_marginTop="7pt"
+            android:layout_marginBottom="7pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_agenda" />
         <TextView
@@ -64,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11pt"
-            android:layout_marginTop="22pt"
+            android:layout_marginTop="16pt"
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="@color/black"
@@ -83,10 +128,10 @@
 
         <ImageView
             android:id="@+id/imagenVacaciones"
-            android:layout_width="93dp"
-            android:layout_height="35pt"
-            android:layout_marginTop="13pt"
-            android:layout_marginBottom="13pt"
+            android:layout_width="80dp"
+            android:layout_height="30pt"
+            android:layout_marginTop="7pt"
+            android:layout_marginBottom="7pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_vacaciones" />
 
@@ -94,7 +139,7 @@
             android:id="@+id/textoVacaciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22pt"
+            android:layout_marginTop="16pt"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/vacaciones"
@@ -114,10 +159,10 @@
 
         <ImageView
             android:id="@+id/imagenCerrarSesion"
-            android:layout_width="93dp"
-            android:layout_height="35pt"
-            android:layout_marginTop="13pt"
-            android:layout_marginBottom="13pt"
+            android:layout_width="80dp"
+            android:layout_height="30pt"
+            android:layout_marginTop="7pt"
+            android:layout_marginBottom="7pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_cerrar_sesion"></ImageView>
         <TextView
@@ -125,34 +170,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11pt"
-            android:layout_marginTop="22pt"
+            android:layout_marginTop="16pt"
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="@color/black"
             android:text="@string/cerrar_sesion" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:context=".Menu">
-    <TextView
-        android:id="@+id/textoEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="11pt"
-        android:layout_marginTop="22pt"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:textColor="@color/black"/>
-        <TextView
-            android:id="@+id/textoNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="11pt"
-            android:layout_marginTop="22pt"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textColor="@color/black"/>
     </LinearLayout>
 </LinearLayout>
