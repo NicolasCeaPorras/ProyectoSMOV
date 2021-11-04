@@ -14,6 +14,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.Timestamp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,9 +32,13 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
     TextView textoHora, hEntrada, hSalida;
     private boolean activo;
     private final Handler mHandler;
+    private String email;
+    private String user;
+    private Timestamp ficharEntrada, ficharSalida;
     MyVectorClock vectorAnalogClock;
     Spinner sLista;
     Date hora;
+    private DatabaseReference mDatabase;
     //Referencia usada para comprender el hilo: https://stackoverflow.com/questions/6400846/updating-time-and-date-by-the-second-in-android
     private final Runnable mRunnable = new Runnable() {
         public void run() {
@@ -57,6 +65,14 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fichar);
         getSupportActionBar().hide();
+        Bundle bundle = this.getIntent().getExtras();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        if(bundle==null) {
+            throw new NullPointerException("El bundle no se ha podido vincular");
+        }
+        email = bundle.getString("email");
+
+
 
         // Enlazar views
         entrada = (Button) findViewById(R.id.buttonFichar);
@@ -113,13 +129,15 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-
         if (entrada.getText().toString().equals("Salida")) {
             Log.d(TAG, "onClicked: " + entrada.getText().toString());
             hora = Calendar.getInstance().getTime();
             String tiempoActual = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(hora);
             hSalida.setText(tiempoActual);
             entrada.setText("Entrada");
+
+            ficharEntrada = new Timestamp(hora.getSeconds(),0);
+            mDatabase.child("usuarios").child(email).setValue(ficharEntrada);
 
         }
         else if ( entrada.getText().toString().equals("Entrada")) {
