@@ -39,7 +39,7 @@ class Organigrama : AppCompatActivity() {
                 }
             }
 
-        organizationChart.addChildToParent("","")   // NO QUITAR ESTA LINEA SI LA QUITAS SE ROMPE TODO
+        organizationChart.addChildToParent("","")   // NO QUITAR ESTA LINEA SI LA QUITAS SE ROMPE
 
 
         webView.getSettings().setJavaScriptEnabled(true)
