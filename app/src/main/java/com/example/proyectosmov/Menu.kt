@@ -39,7 +39,7 @@ class Menu : AppCompatActivity() {
     fun clickFichar(v: View?) {
         val intent = Intent(this@Menu, FicharLogic::class.java)
         val email = findViewById<TextView>(R.id.textoEmail).text.toString()
-        intent.putExtra(email,"email")
+        intent.putExtra("email",email)
         startActivity(intent)
     }
 

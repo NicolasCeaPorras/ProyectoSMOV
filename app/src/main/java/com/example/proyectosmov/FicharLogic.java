@@ -1,5 +1,6 @@
 package com.example.proyectosmov;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,18 +13,26 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
+import kotlin.jvm.internal.Intrinsics;
 
 
 public class FicharLogic extends AppCompatActivity implements View.OnClickListener {
@@ -35,10 +44,11 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
     private String email;
     private String user;
     private Timestamp ficharEntrada, ficharSalida;
+    private Bundle bundle;
     MyVectorClock vectorAnalogClock;
     Spinner sLista;
     Date hora;
-    private DatabaseReference mDatabase;
+    private FirebaseFirestore mDatabase;
     //Referencia usada para comprender el hilo: https://stackoverflow.com/questions/6400846/updating-time-and-date-by-the-second-in-android
     private final Runnable mRunnable = new Runnable() {
         public void run() {
@@ -65,13 +75,18 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fichar);
         getSupportActionBar().hide();
-        Bundle bundle = this.getIntent().getExtras();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        if(bundle==null) {
-            throw new NullPointerException("El bundle no se ha podido vincular");
+        mDatabase = FirebaseFirestore.getInstance();
+        bundle = getIntent().getExtras();
+        if(bundle!=null){
+            Log.d(TAG,"Bundle no es nulo");
+            //Debug para testear la BD
+            if(bundle.isEmpty()==true){
+                Log.d(TAG,"Bundle esta vacio");
+            }
+            email = bundle.getString("email");
         }
-        email = bundle.getString("email");
 
+        Log.d(TAG,"El valor de email es:"+email);
 
 
         // Enlazar views
@@ -135,9 +150,23 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             String tiempoActual = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(hora);
             hSalida.setText(tiempoActual);
             entrada.setText("Entrada");
+            //Añadimos el nuevo campo "salidaFichar" y le pasamos como valor el TimeStamp de la hora actual a la DB.
+            Map<String, Object> horaSalida = new HashMap<>();
+            ficharSalida = Timestamp.now();
+            horaSalida.put("salidaFichar",ficharSalida);
+            mDatabase.collection("usuarios").document(email).set(horaSalida, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                }
+            })          //Comprobación de Google FireStore para saber si hemos escrito correctamente.
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error writing document", e);
+                        }
+                    });
 
-            ficharEntrada = new Timestamp(hora.getSeconds(),0);
-            mDatabase.child("usuarios").child(email).setValue(ficharEntrada);
 
         }
         else if ( entrada.getText().toString().equals("Entrada")) {
@@ -147,6 +176,21 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             hEntrada.setText(tiempoActual);
             hSalida.setText(null);
             entrada.setText("Salida");
+            Map<String, Object> horaEntrada = new HashMap<>();
+            ficharEntrada = Timestamp.now();
+            horaEntrada.put("entradaFichar",ficharEntrada);
+            mDatabase.collection("usuarios").document(email).set(horaEntrada, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                }
+            })          //Comprobación de Google FireStore para saber si hemos escrito correctamente.
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error writing document", e);
+                        }
+                    });
 
         }
     }
