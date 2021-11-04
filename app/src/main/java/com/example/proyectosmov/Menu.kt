@@ -21,7 +21,9 @@ class Menu : AppCompatActivity() {
         val bundle = this.intent.extras
         val email = findViewById<TextView>(R.id.textoEmail)
         val nombre = findViewById<TextView>(R.id.textoNombre)
+        //Extraigo del bundle el email y lo escribo en el TextView correspondiente
         email.text = bundle!!.getString("email")
+        //Buscar el nombre del usuario en la base de datos y escribirlo en el TextView correspondiente
         db.collection("usuarios").document("00001").get().addOnSuccessListener {
             nombre.setText("¡Bienvenido, "+it.get("nombre") as String?+"!")
         }
@@ -36,7 +38,10 @@ class Menu : AppCompatActivity() {
     fun clickCerrarSesion(v: View?) {
         startActivity(Intent(this@Menu, LogIn::class.java))
     }
-
+    //Evento que al hacer click te lleva a la pantalla de organigrama
+    fun clickOrganigrama(v: View?) {
+        startActivity(Intent(this@Menu, Organigrama::class.java))
+    }
     //Evento que al hacer click te lleva a la pantalla de Agenda
     fun clickAgenda(v: View?) {
         startActivity(Intent(this@Menu, AgendaActivity::class.java))

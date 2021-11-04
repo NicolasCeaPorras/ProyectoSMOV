@@ -13,6 +13,9 @@
             android:name=".Organigrama"
             android:exported="false" />
         <activity
+            android:name=".LogIn"
+            android:exported="true" />
+        <activity
             android:name=".VacacionesActivity"
             android:exported="false" />
         <activity
@@ -25,7 +28,7 @@
             android:name=".FicharLogic"
             android:exported="false" />
         <activity
-            android:name=".LogIn"
+            android:name=".AnadirUsuario"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
