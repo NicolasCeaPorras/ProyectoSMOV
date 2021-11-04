@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoSMOV">
         <activity
-            android:name=".AnadirUsuario"
-            android:exported="false" />
-        <activity
             android:name=".Organigrama"
             android:exported="true" />
         <activity
