@@ -33,9 +33,12 @@ class AnadirUsuario : AppCompatActivity() {
         val jerarquia = findViewById<View>(R.id.jerarquia) as EditText
         val contrasena = findViewById<View>(R.id.contrasena) as EditText
         val administrador = findViewById<View>(R.id.administrador) as Spinner
-       /* val esAdministrador = if (administrador.selectedItem().equals("Si"))
-        }
-        db.collection("usuarios").document("00001").set(hashMapOf())*/
+        val esAdministrador = administrador.selectedItem.toString().equals("Si")
+        db.collection("usuarios").document(email.text.toString()).set(hashMapOf("nombreUsuario" to usuario.text.toString(),
+            "nombre" to nombre.text.toString(),
+            "apellidos" to apellidos.text.toString(), "telefono" to telefono.text.toString(),
+            "jerarquia" to jerarquia.text.toString(),"contraseña" to contrasena.text.toString(),
+            "administrador" to esAdministrador))
 
     }
 }
