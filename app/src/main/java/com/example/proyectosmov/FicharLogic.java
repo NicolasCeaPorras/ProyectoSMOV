@@ -16,11 +16,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -132,6 +135,35 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             public void onNothingSelected(AdapterView <?> parent) {
             }
         });
+
+        //Comprobar si existe entradaFichar y salidaFichar en la BD anteriormente.
+
+        mDatabase.collection("usuarios").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+    @Override
+    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+        if (task.isSuccessful()) {
+            DocumentSnapshot document = task.getResult();
+            if (document.exists()) {
+                ficharEntrada= (Timestamp) document.get("entradaFichar");
+                ficharSalida = (Timestamp) document.get("salidaFichar");
+                SimpleDateFormat formato= new SimpleDateFormat("HH:mm:ss");
+                Date hE= ficharEntrada.toDate();
+                String entradaFormato = formato.format(hE);
+                Date hS= ficharSalida.toDate();
+                String salidaFormato = formato.format(hS);
+                hEntrada.setText(entradaFormato);
+                hSalida.setText(salidaFormato);
+                Log.d(TAG, "Fichar entrada es: " + document.get("entradaFichar"));
+                Log.d(TAG, "Fichar salida es: " + document.get("salidaFichar"));
+            } else {
+                Log.d(TAG, "No se encuentra el valor.");
+            }
+        } else {
+            Log.d(TAG, "fallo con ", task.getException());
+        }
+    }
+});
+
 
     }
 
