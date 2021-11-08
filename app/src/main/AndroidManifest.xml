@@ -13,7 +13,7 @@
             android:name=".Organigrama"
             android:exported="false" />
         <activity
-            android:name=".AnadirUsuario"
+            android:name=".GestionUsuarios"
             android:exported="true" />
         <activity
             android:name=".VacacionesActivity"

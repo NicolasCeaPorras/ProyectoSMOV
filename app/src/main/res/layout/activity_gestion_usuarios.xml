@@ -7,14 +7,14 @@
     android:layout_height="fill_parent"
     android:background="@drawable/fondo"
     android:orientation="vertical"
-    tools:context=".AnadirUsuario">
+    tools:context=".GestionUsuarios">
 
     <LinearLayout
         android:layout_marginTop="6pt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:context=".AnadirUsuario">
+        tools:context=".GestionUsuarios">
 
         <TextView
             android:layout_width="174dp"
@@ -38,7 +38,7 @@
         android:layout_marginTop="5pt"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:context=".AnadirUsuario">
+        tools:context=".GestionUsuarios">
         <TextView
             android:layout_width="174dp"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="5pt"
-        tools:context=".AnadirUsuario">
+        tools:context=".GestionUsuarios">
         <TextView
             android:layout_width="174dp"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="5pt"
-        tools:context=".AnadirUsuario">
+        tools:context=".GestionUsuarios">
         <TextView
             android:layout_width="174dp"
             android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="5pt"
-        tools:context=".AnadirUsuario">
+        tools:context=".GestionUsuarios">
         <TextView
             android:layout_width="174dp"
             android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="5pt"
-        tools:context=".AnadirUsuario">
+        tools:context=".GestionUsuarios">
         <TextView
             android:layout_width="174dp"
             android:layout_height="wrap_content"
@@ -153,7 +153,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5pt"
         android:orientation="horizontal"
-        tools:context=".AnadirUsuario">
+        tools:context=".GestionUsuarios">
         <TextView
             android:layout_width="174dp"
             android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5pt"
         android:orientation="horizontal"
-        tools:context=".AnadirUsuario">
+        tools:context=".GestionUsuarios">
         <TextView
             android:layout_width="174dp"
             android:layout_height="wrap_content"
@@ -203,5 +203,43 @@
         android:layout_gravity="center"
         android:layout_marginTop="10pt"
         android:text="@string/anadirUsuario"
+        android:onClick="onClickAnadir"
         android:backgroundTint="#2196F3"></Button>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5pt"
+        android:layout_height="2dp"
+        android:background="#505050"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_marginTop="5pt"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:context=".GestionUsuarios">
+        <TextView
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:text="@string/correo"
+            android:layout_gravity="center"
+            android:textSize="8pt"
+            android:textAlignment="center"
+            android:textColor="@color/black">
+        </TextView>
+
+        <EditText
+            android:id="@+id/correoEliminar"
+            android:layout_width="230dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3pt"></EditText>
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10pt"
+        android:text="@string/eliminarUsuario"
+        android:onClick="onClickEliminar"
+        android:backgroundTint="#2196F3"></Button>
+
 </LinearLayout>

@@ -10,7 +10,9 @@
     <string name="organigrama">Organigrama</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="horaentrada">Hora de entrada:</string>
+    <string name="gestionUsuario">Gestión de usuarios</string>
     <string name="anadirUsuario">Añadir usuario</string>
+    <string name="eliminarUsuario">Eliminar usuario</string>
     <string name="horasalida">Hora de salida:</string>
     <string name="nota">Escribe la nota que quieres:</string>
     <string name="diasvaca"> DIAS DISPONIBLES: </string>
