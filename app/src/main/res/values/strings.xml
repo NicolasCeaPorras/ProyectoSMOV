@@ -26,4 +26,9 @@
     <string name="apellidos">Apellidos: </string>
     <string name="telefono">Teléfono: </string>
     <string name="administrador">Administrador: </string>
+    <string name="PresenciaCheckDate">Escoger mes y año: </string>
+    <string name="ButtonMiPresenciaChangeDate">Ver presencia </string>
+    <string name="Header1PresenciaTable">Día</string>
+    <string name="Header2PresenciaTable">Hora de entrada </string>
+    <string name="Header3PresenciaTable">Hora de salida</string>
 </resources>
