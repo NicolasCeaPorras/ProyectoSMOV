@@ -11,6 +11,7 @@
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="horaentrada">Hora de entrada:</string>
     <string name="gestionUsuario">Gestión de usuarios</string>
+    <string name="miPresencia">Mi Presencia</string>
     <string name="anadirUsuario">Añadir usuario</string>
     <string name="eliminarUsuario">Eliminar usuario</string>
     <string name="horasalida">Hora de salida:</string>

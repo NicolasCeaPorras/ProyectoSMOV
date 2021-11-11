@@ -7,56 +7,58 @@ import java.util.*
 //Data clases que representan el dominio para las consultas
 
 data class Company(
-    val name: String? = null,
-    val sector: String? = null,
-    val phone_number: String? = null,
-    val offices: List<Office>? = null,
-    val users: List<User>? = null
+    var name: String? = null,
+    var sector: String? = null,
+    var phone_number: String? = null,
+    var offices: MutableList<Office>? = null,
+    var users: MutableList<User>? = null
 )
 data class User(
-    val name: String? = null,
-    val user_name: String? = null,
-    val email: String? = null,
-    val password: String? = null,
-    val phone_number: String? = null,
-    val admin: Boolean? = null,
-    val active_input: ActiveInput? = null,
-    val holiday_periods: List<HolidayPeriod>? = null,
-    val scheduled_tasks: List<ScheduledTask>? = null,
-    val time_records: List<TimeRecord>? = null
+    var name: String? = null,
+    var user_name: String? = null,
+    var email: String? = null,
+    var password: String? = null,
+    var phone_number: String? = null,
+    var admin: Boolean? = null,
+    var active_input: ActiveInput? = null,
+    var holiday_periods: MutableList<HolidayPeriod>? = null,
+    var scheduled_tasks: MutableList<ScheduledTask>? = null,
+    var time_records: MutableList<TimeRecord>? = null
 
 )
 data class Office(
-    val address_apartment: String? = null,
-    val address_country: String? = null,
-    val address_location: String? = null,
-    val address_number: String? = null,
-    val address_postal_code: String? = null,
-    val address_province: String? = null,
-    val address_street: String? = null,
-    val idHashOffice: String? = null,
-    val name: String? = null,
+    var address_apartment: String? = null,
+    var address_country: String? = null,
+    var address_location: String? = null,
+    var address_number: String? = null,
+    var address_postal_code: String? = null,
+    var address_province: String? = null,
+    var address_street: String? = null,
+    var idHashOffice: String? = null,
+    var name: String? = null,
 )
 data class ActiveInput(
-    val creation_date: Date? = null,
-    val office_idHash: String? = null,
-    val start_hour: Date? = null,
+    var creation_date: Date? = null,
+    var office_idHash: String? = null,
+    var start_hour: Date? = null,
 )
 data class HolidayPeriod(
-    val creation_date: Date? = null,
-    val start_date: Date? = null,
-    val end_date: Date? = null,
+    var creation_date: Date? = null,
+    var start_date: Date? = null,
+    var end_date: Date? = null,
 )
 data class ScheduledTask(
-    val creation_date: Date? = null,
-    val description: String? = null,
-    val task_date: Date? = null,
-)
+    var creation_date: Date? = null,
+    var description: String? = null,
+    var task_date: Date? = null,
+) {
+    override fun toString(): String = description.toString()
+}
 data class TimeRecord(
-    val creation_date: Date? = null,
-    val start_hour: Date? = null,
-    val end_hour: Date? = null,
-    val office_idHash: String? = null
+    var creation_date: Date? = null,
+    var start_hour: Date? = null,
+    var end_hour: Date? = null,
+    var office_idHash: String? = null
 )
 
 
@@ -73,10 +75,10 @@ fun getUserByEmail(comp : Company, email : String): User? {
 
 
 fun getUserPresencia(month: Int, year: Int, user: User) :MutableList<TimeRecord>{
-    val time_records_return: MutableList<TimeRecord> = mutableListOf()
+    var time_records_return: MutableList<TimeRecord> = mutableListOf()
 
     if(user.time_records != null){
-        for(time_record in user.time_records){
+        for(time_record in user.time_records!!){
             val formatDate = SimpleDateFormat("yyyy")
             val time_record_year : Int = formatDate.format(time_record.creation_date!!).toInt() //Lo hago de esta forma porque la siguiente linea no funcionaba bien
             //val time_record_year : Int = time_record.creation_date!!.year
@@ -93,4 +95,22 @@ fun getUserPresencia(month: Int, year: Int, user: User) :MutableList<TimeRecord>
 
     }
     return time_records_return
+}
+
+
+fun gettasksByUserAndDate(user : User, date : Date) : MutableList<ScheduledTask>{
+    var scheduled_tasks_return: MutableList<ScheduledTask> = mutableListOf()
+    if(user.scheduled_tasks != null){
+        for(task in user.scheduled_tasks!!){
+            val formatDate = SimpleDateFormat("dd/MM/yyyy")
+            val task_date_string : String = formatDate.format(date)
+            val filter_date_string : String = formatDate.format(task.task_date!!)
+
+            if(task_date_string == filter_date_string){
+                scheduled_tasks_return.add(task)
+            }
+        }
+
+    }
+    return scheduled_tasks_return
 }
