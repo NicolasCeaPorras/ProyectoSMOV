@@ -16,6 +16,7 @@ data class Company(
 data class User(
     var name: String? = null,
     var user_name: String? = null,
+    var jefe: String? = null,
     var email: String? = null,
     var password: String? = null,
     var phone_number: String? = null,
