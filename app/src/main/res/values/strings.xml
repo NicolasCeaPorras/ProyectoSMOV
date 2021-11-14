@@ -11,6 +11,7 @@
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="horaentrada">Hora de entrada:</string>
     <string name="gestionUsuario">Gestión de usuarios</string>
+    <string name="miPresencia">Mi Presencia</string>
     <string name="anadirUsuario">Añadir usuario</string>
     <string name="eliminarUsuario">Eliminar usuario</string>
     <string name="horasalida">Hora de salida:</string>
@@ -26,4 +27,9 @@
     <string name="apellidos">Apellidos: </string>
     <string name="telefono">Teléfono: </string>
     <string name="administrador">Administrador: </string>
+    <string name="PresenciaCheckDate">Escoger mes y año: </string>
+    <string name="ButtonMiPresenciaChangeDate">Ver presencia </string>
+    <string name="Header1PresenciaTable">Día</string>
+    <string name="Header2PresenciaTable">Hora de entrada </string>
+    <string name="Header3PresenciaTable">Hora de salida</string>
 </resources>

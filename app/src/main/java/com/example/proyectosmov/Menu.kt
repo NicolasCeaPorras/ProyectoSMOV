@@ -3,16 +3,11 @@ package com.example.proyectosmov
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.firestore.FirebaseFirestore
-import com.example.proyectosmov.R
 import android.widget.TextView
 import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import com.example.proyectosmov.FicharLogic
-import com.example.proyectosmov.LogIn
-import com.example.proyectosmov.AgendaActivity
-import com.example.proyectosmov.VacacionesActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class Menu : AppCompatActivity() {
@@ -49,7 +44,6 @@ class Menu : AppCompatActivity() {
         intent.putExtra("email",email)
         startActivity(intent)
     }
-
     //Evento que al hacer click te cierra la sesion actualmente activa y te redirecciona al login
     fun clickCerrarSesion(v: View?) {
         FirebaseAuth.getInstance().signOut()
@@ -73,5 +67,12 @@ class Menu : AppCompatActivity() {
     //Unicamente accesible si el usuario que ha iniciado sesion es administrador
     fun clickGestionUsuarios(v: View?){
         startActivity(Intent(this@Menu,GestionUsuarios::class.java))
+    }
+    //Evento que al hacer click te lleva a la pantalla de mi presencia
+    fun clickMiPresencia(v: View?) {
+        val intent = Intent(this@Menu, PresenciaActivity::class.java)
+        val email = findViewById<TextView>(R.id.textoEmail).text.toString()
+        intent.putExtra("email",email)
+        startActivity(intent)
     }
 }
