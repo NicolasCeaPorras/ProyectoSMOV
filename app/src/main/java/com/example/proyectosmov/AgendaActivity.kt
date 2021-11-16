@@ -24,15 +24,16 @@ class AgendaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agenda)
+        supportActionBar!!.hide()
         val bundle = getIntent().getExtras();
         if(bundle!=null && !bundle.isEmpty){
 //            companyId = bundle.getString("companyId").toString();
 //            userEmail = bundle.getString("email").toString();
-            companyId = "Prueba"
-            userEmail = "email@pruebas.com"
+            companyId = "7fPPoOKgo9tmPB7YM4ED"
+            userEmail = "pepe@p.com"
         }
-        companyId = "Prueba"
-        userEmail = "email@pruebas.com"
+        companyId = "7fPPoOKgo9tmPB7YM4ED"
+        userEmail = "pepe@p.com"
 
         //Mostramos las tareas de hoy
         showTasks(selected_date)

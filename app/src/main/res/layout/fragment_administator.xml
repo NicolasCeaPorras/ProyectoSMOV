@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/fondo"
+    android:orientation="vertical"
+    android:layout_margin="40dp"
+    tools:context=".fragmentos.MainOfficeFragment">
+
+    <TextView
+        android:id="@+id/CompanyTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/newCompanyAdminTitle"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        android:textSize="22sp" />
+
+    <TextView
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/newCompanyAdminName"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:textSize="8pt"/>
+
+    <EditText
+        android:id="@+id/newCompanyAdminName"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="3pt"/>
+
+    <TextView
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/newCompanyAdminPhoneNumber"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:textSize="8pt"/>
+
+    <EditText
+        android:id="@+id/newCompanyAdminPhoneNumber"
+        android:layout_width="230dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="3pt"
+        android:ems="10"
+        android:maxLength="9"
+        android:inputType="number"/>
+
+    <TextView
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/newCompanyAdminEmail"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:textSize="8pt"/>
+
+    <EditText
+        android:id="@+id/newCompanyAdminEmail"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="3pt"/>
+
+    <TextView
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/newCompanyAdminUserName"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:textSize="8pt"/>
+
+    <EditText
+        android:id="@+id/newCompanyAdminUserName"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="3pt"/>
+
+    <TextView
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/newCompanyAdminPassword"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:textSize="8pt"/>
+
+    <EditText
+        android:id="@+id/newCompanyAdminPassword"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="3pt"
+        android:ems="10"
+        android:inputType="textPassword"/>
+
+</LinearLayout>

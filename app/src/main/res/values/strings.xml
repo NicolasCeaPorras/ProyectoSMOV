@@ -32,4 +32,36 @@
     <string name="Header1PresenciaTable">Día</string>
     <string name="Header2PresenciaTable">Hora de entrada </string>
     <string name="Header3PresenciaTable">Hora de salida</string>
+
+    <!--  Strings para la gestion de nuevas compañias  -->
+    <string name="newCompanyCompanyTitle">Información de la compañia: </string>
+    <string name="newCompanyCompanyName">Nombre de la empresa: </string>
+    <string name="newCompanyPhoneNumber">Número de teléfono: </string>
+    <string name="newCompanySector">Sector: </string>
+
+    <string name="newCompanyOfficeTitle">Oficina principal: </string>
+    <string name="newCompanyOfficeName">Alias: </string>
+    <string name="newCompanyOfficeAddressStreetr">Direccion: </string>
+    <string name="newCompanyOfficeAddressApartment">Piso: </string>
+    <string name="newCompanyOfficeAddressLocation">Localidad: </string>
+    <string name="newCompanyOfficeAddressProvince">Provincia: </string>
+    <string name="newCompanyOfficeAddressPostalCode">CodigoPostal: </string>
+    <string name="newCompanyOfficeAddressCountry">País: </string>
+
+    <string name="newCompanyAdminTitle">Usuario Administrador: </string>
+    <string name="newCompanyAdminName">Nombre y Apellidos: </string>
+    <string name="newCompanyAdminPhoneNumber">Número de teléfono: </string>
+    <string name="newCompanyAdminEmail">Email: </string>
+    <string name="newCompanyAdminUserName">Nombre de Usuario: </string>
+    <string name="newCompanyAdminPassword">Contraseña: </string>
+
+
+    <string name="CondicionesDeRegistroTitle">Al dar a siguiente aceptará las siguientes condiciones: </string>
+    <string name="CondicionesDeRegistroText">Lorem ipsum dolor sit amet consectetur adipiscing elit, taciti ullamcorper habitant metus quisque nulla, facilisis sociosqu felis dui in integer. Felis lobortis praesent mattis potenti sociosqu fermentum dictumst laoreet penatibus, fames dapibus gravida quisque pulvinar sodales facilisi inceptos, eleifend auctor magnis convallis cubilia pellentesque diam mauris. Platea dapibus arcu per imperdiet ultricies habitasse dui condimentum, non posuere etiam eget tortor quisque class fusce molestie, feugiat phasellus in nostra turpis tempor curabitur.
+
+Eros dignissim eget nostra platea quam tristique massa, venenatis arcu odio cursus metus vitae lobortis, tincidunt lectus phasellus at libero pretium. Sociis interdum metus inceptos sodales venenatis ligula platea, et mollis himenaeos pretium imperdiet conubia posuere, lobortis senectus rhoncus erat semper enim. Auctor dictum lectus ligula nisl mauris semper senectus ultricies blandit, a vel phasellus rhoncus sed facilisi dignissim volutpat sapien neque, aliquam viverra aenean magna tortor iaculis lobortis montes.
+    </string>
+
+    <string name="hello_blank_fragment">hello_blank_fragment: </string>
+
 </resources>

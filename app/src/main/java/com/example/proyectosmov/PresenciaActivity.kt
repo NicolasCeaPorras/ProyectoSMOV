@@ -32,6 +32,7 @@ class PresenciaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_presencia)
+        supportActionBar!!.hide()
         val bundle = getIntent().getExtras();
         if(bundle!=null && !bundle.isEmpty){
 //            companyId = bundle.getString("companyId").toString();

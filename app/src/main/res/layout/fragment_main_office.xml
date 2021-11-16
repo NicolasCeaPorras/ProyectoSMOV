@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/fondo"
+    android:orientation="vertical"
+    android:layout_margin="40dp"
+    tools:context=".fragmentos.MainOfficeFragment">
+
+        <TextView
+            android:id="@+id/CompanyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/newCompanyOfficeTitle"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/newCompanyOfficeName"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:textSize="8pt"/>
+
+        <EditText
+            android:id="@+id/newCompanyOfficeName"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="3pt"/>
+
+        <TextView
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/newCompanyOfficeAddressStreetr"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:textSize="8pt"/>
+
+        <EditText
+            android:id="@+id/newCompanyOfficeAddressStreetr"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="3pt"/>
+
+        <TextView
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/newCompanyOfficeAddressApartment"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:textSize="8pt"/>
+
+        <EditText
+            android:id="@+id/newCompanyOfficeAddressApartment"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="3pt"/>
+
+        <TextView
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/newCompanyOfficeAddressLocation"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:textSize="8pt"/>
+
+        <EditText
+            android:id="@+id/newCompanyOfficeAddressLocation"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="3pt"/>
+
+        <TextView
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/newCompanyOfficeAddressProvince"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:textSize="8pt"/>
+
+        <EditText
+            android:id="@+id/newCompanyOfficeAddressProvince"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="3pt"/>
+
+        <TextView
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/newCompanyOfficeAddressPostalCode"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:textSize="8pt"/>
+
+        <EditText
+            android:id="@+id/newCompanyOfficeAddressPostalCode"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="3pt"
+            android:maxLength="5"
+            android:inputType="number"/>
+
+        <TextView
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/newCompanyOfficeAddressCountry"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:textSize="8pt"/>
+
+        <EditText
+            android:id="@+id/newCompanyOfficeAddressCountry"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="80dp"
+            android:layout_marginLeft="3pt"/>
+
+</LinearLayout>

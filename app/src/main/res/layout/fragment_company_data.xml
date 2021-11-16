@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/fondo"
+    android:orientation="vertical"
+    android:layout_margin="40dp"
+    tools:context=".fragmentos.CompanyDataFragment">
+
+    <TextView
+        android:id="@+id/CompanyTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/newCompanyCompanyTitle"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        android:textSize="22sp" />
+
+    <TextView
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/newCompanyCompanyName"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:textSize="8pt"/>
+
+    <EditText
+        android:id="@+id/newCompanyCompanyName"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="3pt"/>
+
+    <TextView
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:text="@string/newCompanyPhoneNumber"
+        android:layout_gravity="center"
+        android:textSize="8pt"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black">
+    </TextView>
+
+    <EditText
+        android:id="@+id/newCompanyPhoneNumber"
+        android:layout_width="230dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="3pt"
+        android:ems="10"
+        android:maxLength="9"
+        android:inputType="number"/>
+
+
+    <TextView
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/newCompanySector"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:textSize="8pt"/>
+
+    <Spinner
+        android:id="@+id/newCompanySector"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="40dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/newCompanySector"/>
+
+
+</LinearLayout>

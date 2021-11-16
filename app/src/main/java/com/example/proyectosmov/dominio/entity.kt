@@ -31,7 +31,6 @@ data class Office(
     var address_apartment: String? = null,
     var address_country: String? = null,
     var address_location: String? = null,
-    var address_number: String? = null,
     var address_postal_code: String? = null,
     var address_province: String? = null,
     var address_street: String? = null,
