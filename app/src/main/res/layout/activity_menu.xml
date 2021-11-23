@@ -64,10 +64,10 @@
 
         <ImageView
             android:id="@+id/imagenFichar"
-            android:layout_width="15dp"
-            android:layout_height="35pt"
-            android:layout_marginTop="7pt"
-            android:layout_marginBottom="7pt"
+            android:layout_width="10dp"
+            android:layout_height="27pt"
+            android:layout_marginTop="4pt"
+            android:layout_marginBottom="4pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_fichar" />
 
@@ -75,13 +75,12 @@
             android:id="@+id/textoFichar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18pt"
+            android:layout_marginTop="10pt"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/fichar"
             android:textColor="@color/black"
-            android:textSize="11pt" />
-
+            android:textSize="10pt" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -96,18 +95,18 @@
 
         <ImageView
             android:id="@+id/imagenAgenda"
-            android:layout_width="34dp"
-            android:layout_height="30pt"
-            android:layout_marginTop="7pt"
-            android:layout_marginBottom="7pt"
+            android:layout_width="30dp"
+            android:layout_height="25pt"
+            android:layout_marginTop="4pt"
+            android:layout_marginBottom="4pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_agenda" />
         <TextView
             android:id="@+id/textoAgenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="11pt"
-            android:layout_marginTop="16pt"
+            android:textSize="10pt"
+            android:layout_marginTop="10pt"
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="@color/black"
@@ -126,10 +125,10 @@
 
         <ImageView
             android:id="@+id/imagenVacaciones"
-            android:layout_width="80dp"
-            android:layout_height="30pt"
-            android:layout_marginTop="7pt"
-            android:layout_marginBottom="7pt"
+            android:layout_width="74dp"
+            android:layout_height="25pt"
+            android:layout_marginTop="4pt"
+            android:layout_marginBottom="4pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_vacaciones" />
 
@@ -137,12 +136,12 @@
             android:id="@+id/textoVacaciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16pt"
+            android:layout_marginTop="10pt"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/vacaciones"
             android:textColor="@color/black"
-            android:textSize="11pt" />
+            android:textSize="10pt" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -157,22 +156,87 @@
 
         <ImageView
             android:id="@+id/imagenOrganigrama"
-            android:layout_width="99dp"
-            android:layout_height="30pt"
-            android:layout_marginTop="7pt"
-            android:layout_marginBottom="7pt"
+            android:layout_width="91dp"
+            android:layout_height="25pt"
+            android:layout_marginTop="4pt"
+            android:layout_marginBottom="4pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_organigrama"></ImageView>
         <TextView
             android:id="@+id/textoOrganigrama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="11pt"
-            android:layout_marginTop="16pt"
+            android:textSize="10pt"
+            android:layout_marginTop="10pt"
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="@color/black"
             android:text="@string/organigrama" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#505050"/>
+    <LinearLayout
+        android:id="@+id/gestionUsuarios"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="clickGestionUsuarios"
+        android:visibility="invisible"
+        tools:context=".Menu">
+
+        <ImageView
+            android:id="@+id/imagenGestionUsuarios"
+            android:layout_width="167dp"
+            android:layout_height="25pt"
+            android:layout_marginTop="4pt"
+            android:layout_marginBottom="4pt"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icono_gestion_usuarios"></ImageView>
+        <TextView
+            android:id="@+id/textoGestionUsuarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10pt"
+            android:layout_marginTop="10pt"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:text="@string/gestionUsuario" />
+    </LinearLayout>
+    <View
+        android:id="@+id/lineaGestionUsuarios"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#505050"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="clickMiPresencia"
+        tools:context=".Menu">
+
+        <ImageView
+            android:id="@+id/miPresencia"
+            android:layout_width="91dp"
+            android:layout_height="25pt"
+            android:layout_marginTop="4pt"
+            android:layout_marginBottom="4pt"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icono_organigrama"></ImageView>
+        <TextView
+            android:id="@+id/textoMiPresencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10pt"
+            android:layout_marginTop="10pt"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="@string/miPresencia" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -187,22 +251,25 @@
 
         <ImageView
             android:id="@+id/imagenCerrarSesion"
-            android:layout_width="106dp"
-            android:layout_height="30pt"
-            android:layout_marginTop="7pt"
-            android:layout_marginBottom="7pt"
+            android:layout_width="95dp"
+            android:layout_height="25pt"
+            android:layout_marginTop="4pt"
+            android:layout_marginBottom="4pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_cerrar_sesion"></ImageView>
         <TextView
             android:id="@+id/textoCerrarSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="11pt"
-            android:layout_marginTop="16pt"
+            android:textSize="10pt"
+            android:layout_marginTop="10pt"
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="@color/black"
             android:text="@string/cerrar_sesion" />
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#505050"/>
 </LinearLayout>

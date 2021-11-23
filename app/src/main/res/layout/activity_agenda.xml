@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,65 +9,82 @@
     android:orientation="vertical"
     android:background="@drawable/fondo"
     >
-
-    <LinearLayout
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/back"
-        android:layout_margin="20dp"
-        >
-
-        <CalendarView
-            android:id="@+id/agenCalendario"
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/back"
+            android:layout_margin="20dp"
+            >
 
-    </LinearLayout>
+            <CalendarView
+                android:id="@+id/agenCalendario"
+                android:layout_width="fill_parent"
+                android:layout_height="315dp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:background="@drawable/back"
-        >
-
-        <EditText
-            android:hint="@string/nota"
-            android:inputType="text"
-            android:layout_width="340dp"
-            android:layout_height="140dp"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp">
-
-        </EditText>
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:gravity="center">
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-            app:srcCompat="@android:drawable/ic_input_add"
-            android:layout_marginRight="120dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/back"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        </ImageView>
+            <ListView
+                android:id="@+id/listTasks"
+                android:layout_width="match_parent"
+                android:layout_height="110dp" />
+        </LinearLayout>
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/back"
+            >
 
-        </ImageView>
-    </LinearLayout>
+            <EditText
+                android:id="@+id/nota"
+                android:layout_width="340dp"
+                android:layout_height="75dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:hint="@string/nota"
+                android:inputType="text"
+                android:textSize="20sp">
+
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/buttonAdd"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                app:srcCompat="@android:drawable/ic_input_add"
+                android:layout_marginRight="120dp">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/buttonRemove"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel">
+
+            </ImageView>
+        </LinearLayout>
 </LinearLayout>

@@ -10,16 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoSMOV">
         <activity
+            android:name=".NewCompaniesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AgendaActivity"
+            android:exported="true" />
+        <activity
+            android:name=".PresenciaActivity"
+            android:exported="true" />
+        <activity
             android:name=".Organigrama"
             android:exported="false" />
         <activity
-            android:name=".AnadirUsuario"
+            android:name=".GestionUsuarios"
             android:exported="true" />
         <activity
             android:name=".VacacionesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AgendaActivity"
             android:exported="false" />
         <activity
             android:name=".Menu"
