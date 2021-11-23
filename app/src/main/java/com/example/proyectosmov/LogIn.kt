@@ -96,7 +96,7 @@ class LogIn : AppCompatActivity() {
     private fun showMenu(email: String){
         val menuIntent = Intent(this, Menu::class.java).apply{
             putExtra("email", email)
-            putExtra("company", findViewById<EditText>(R.id.companiaUsuario).text)
+            putExtra("company", findViewById<EditText>(R.id.companiaUsuario).text.toString())
         }
         startActivity(menuIntent)
     }
