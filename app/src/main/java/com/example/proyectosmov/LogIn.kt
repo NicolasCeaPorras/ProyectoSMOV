@@ -37,6 +37,8 @@ class LogIn : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.passwordUsuario)
         val error = findViewById<TextView>(R.id.errorLogin)
 
+        val nombreCompania = company.text.toString()
+
         // Cuando se pulsa el boton Acceder se valida el usuario en firebase
         botonAcceder.setOnClickListener {
 
@@ -67,6 +69,7 @@ class LogIn : AppCompatActivity() {
                                         if (it.isSuccessful) {
                                             showMenu(
                                                 it.result?.user?.email ?: ""
+                                                        ,nombreCompania ?: ""
                                             )  // Se enseña el menu de la aplicacion y se pasa el mail como parametro
                                         } else {
                                             showAlert() // Muestra el mensaje de error
@@ -92,9 +95,10 @@ class LogIn : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showMenu(email: String){
+    private fun showMenu(email: String, company: String){
         val menuIntent = Intent(this, Menu::class.java).apply{
             putExtra("email", email)
+            putExtra("company", company)
         }
         startActivity(menuIntent)
     }
