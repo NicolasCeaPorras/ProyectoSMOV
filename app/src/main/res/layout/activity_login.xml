@@ -78,7 +78,7 @@
         android:id="@+id/explicacionCompania"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Compañia"
+        android:text="Compañía"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -127,15 +127,16 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="132dp"
-        android:layout_height="130dp"
+        android:layout_width="398dp"
+        android:layout_height="98dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026"
-        app:srcCompat="@drawable/iconoandroidlogin" />
+        app:layout_constraintVertical_bias="0.082"
+        app:srcCompat="@drawable/organiza2" />
 
     <TextView
         android:id="@+id/errorLogin"
