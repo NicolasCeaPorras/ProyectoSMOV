@@ -9,7 +9,9 @@ import android.widget.Spinner
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
+import com.example.proyectosmov.dominio.*
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.SetOptions
 
 class GestionUsuarios : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +27,7 @@ class GestionUsuarios : AppCompatActivity() {
         administrador.adapter = adapter
     }
 
+
     //Se ejecuta al dar click a añadir usuario, inserta un usuario en la base de datos
     fun onClickAnadir(v: View?) {
         val db = FirebaseFirestore.getInstance()
@@ -32,31 +35,25 @@ class GestionUsuarios : AppCompatActivity() {
         val usuario = findViewById<View>(R.id.usuario) as EditText
         val email = findViewById<View>(R.id.correo) as EditText
         val nombre = findViewById<View>(R.id.nombre) as EditText
-        val apellidos = findViewById<View>(R.id.apellidos) as EditText
         val telefono = findViewById<View>(R.id.telefono) as EditText
-        val jerarquia = findViewById<View>(R.id.jerarquia) as EditText
+        val jefe = findViewById<View>(R.id.jefe) as EditText
+        val compania  = findViewById<View>(R.id.compania) as EditText
         val contrasena = findViewById<View>(R.id.contrasena) as EditText
         val administrador = findViewById<View>(R.id.administrador) as Spinner
-        val esAdministrador = administrador.selectedItem.toString().equals("Si")
+        val esAdministrador = administrador.selectedItem.toString().equals("Sí")
+        val user = User(nombre.text.toString(),usuario.text.toString(),jefe.text.toString(),email.text.toString(), contrasena.text.toString(),
+                            telefono.text.toString(),esAdministrador,null,null,null,null)
 
-            db.collection("usuarios").document(email.text.toString()).set(
-                hashMapOf(
-                    "nombreUsuario" to usuario.text.toString(),
-                    "nombre" to nombre.text.toString(),
-                    "apellidos" to apellidos.text.toString(),
-                    "telefono" to telefono.text.toString(),
-                    "jerarquia" to jerarquia.text.toString(),
-                    "contraseña" to contrasena.text.toString(),
-                    "administrador" to esAdministrador
-                )
-            )
+            db.collection("companies").document(compania.text.toString()).set(hashMapOf("users" to FieldValue.arrayUnion(user)), SetOptions.merge()).addOnSuccessListener {
 
-            auth.createUserWithEmailAndPassword(email.text.toString(), contrasena.text.toString())
+
+                //auth.createUserWithEmailAndPassword(email.text.toString(), contrasena.text.toString())
+            }
     }
 
     //Se ejecuta al dar click a eliminar usuario, elimina un usuario de la base de datos
     fun onClickEliminar(v: View?) {
-        val db = FirebaseFirestore.getInstance()
+        /*val db = FirebaseFirestore.getInstance()
         val email = findViewById<View>(R.id.correoEliminar) as EditText
         db.collection("usuarios").document(email.text.toString()).delete().addOnCompleteListener {
             if (it.isSuccessful) {
@@ -64,7 +61,7 @@ class GestionUsuarios : AppCompatActivity() {
             } else {
                 alertaNoExisteUsuario()
             }
-        }
+        }*/
     }
 
     //Muestra una alerta si se intenta eliminar un usuario de la BD

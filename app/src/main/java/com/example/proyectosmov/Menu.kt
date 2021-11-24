@@ -89,9 +89,12 @@ class Menu : AppCompatActivity() {
     }
     //Evento que al hacer click te lleva a la pantalla de mi presencia
     fun clickMiPresencia(v: View?) {
+        val bundle = this.intent.extras
+        val compania = bundle!!.getString("company")
         val intent = Intent(this@Menu, PresenciaActivity::class.java)
         val email = findViewById<TextView>(R.id.textoEmail).text.toString()
         intent.putExtra("email",email)
+        intent.putExtra("company",compania)
         startActivity(intent)
     }
 }
