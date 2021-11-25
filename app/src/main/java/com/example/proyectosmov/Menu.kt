@@ -58,9 +58,12 @@ class Menu : AppCompatActivity() {
 
     //Evento que al hacer click te lleva a la pantalla de fichar
     fun clickFichar(v: View?) {
+        val bundle = this.intent.extras
+        val compania = bundle!!.getString("company")
         val intent = Intent(this@Menu, FicharLogic::class.java)
         val email = findViewById<TextView>(R.id.textoEmail).text.toString()
         intent.putExtra("email",email)
+        intent.putExtra("company",compania)
         startActivity(intent)
     }
     //Evento que al hacer click te cierra la sesion actualmente activa y te redirecciona al login
@@ -79,7 +82,13 @@ class Menu : AppCompatActivity() {
 
     //Evento que al hacer click te cierra la sesion y te redirecciona a la pantalla de Vacaciones
     fun clickVacaciones(v: View?) {
-        startActivity(Intent(this@Menu, VacacionesActivity::class.java))
+        val bundle = this.intent.extras
+        val compania = bundle!!.getString("company")
+        val email = findViewById<TextView>(R.id.textoEmail).text.toString()
+        val intent = Intent(this@Menu, VacacionesActivity::class.java)
+        intent.putExtra("email",email)
+        intent.putExtra("company",compania)
+        startActivity(intent)
     }
 
     //Evento que al hacer click te lleva a la pantalla de gestion de usuarios
@@ -90,11 +99,9 @@ class Menu : AppCompatActivity() {
     //Evento que al hacer click te lleva a la pantalla de mi presencia
     fun clickMiPresencia(v: View?) {
         val bundle = this.intent.extras
-        val compania = bundle!!.getString("company")
         val intent = Intent(this@Menu, PresenciaActivity::class.java)
         val email = findViewById<TextView>(R.id.textoEmail).text.toString()
         intent.putExtra("email",email)
-        intent.putExtra("company",compania)
         startActivity(intent)
     }
 }

@@ -7,6 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.example.proyectosmov.dominio.*
@@ -43,11 +44,11 @@ class GestionUsuarios : AppCompatActivity() {
         val esAdministrador = administrador.selectedItem.toString().equals("Sí")
         val user = User(nombre.text.toString(),usuario.text.toString(),jefe.text.toString(),email.text.toString(), contrasena.text.toString(),
                             telefono.text.toString(),esAdministrador,null,null,null,null)
-
+            //Añado el usuario a la base de datos y tambien lo añado a la autentificación
             db.collection("companies").document(compania.text.toString()).set(hashMapOf("users" to FieldValue.arrayUnion(user)), SetOptions.merge()).addOnSuccessListener {
-
-
-                //auth.createUserWithEmailAndPassword(email.text.toString(), contrasena.text.toString())
+                auth.createUserWithEmailAndPassword(email.text.toString(), contrasena.text.toString())
+                val toast = Toast.makeText(this,"Usuario añadido con éxito",Toast.LENGTH_SHORT)
+                toast.show()
             }
     }
 
