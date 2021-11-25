@@ -82,7 +82,8 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             if(bundle.isEmpty()==true){
                 Log.d(TAG,"Bundle esta vacio");
             }
-            email = bundle.getString("email");
+            //email = bundle.getString("email");
+            email = "a@a.com";
         }
 
         Log.d(TAG,"El valor de email es:"+email);
