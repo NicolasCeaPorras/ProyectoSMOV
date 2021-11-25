@@ -17,9 +17,10 @@
     <string name="eliminarUsuario">Eliminar usuario</string>
     <string name="horasalida">Hora de salida:</string>
     <string name="nota">Escribe la nota que quieres:</string>
-    <string name="diasvaca"> DIAS DISPONIBLES: </string>
+    <string name="diasvaca">  DIAS DISPONIBLES: </string>
     <string name="fechaSal">FECHA DE SALIDA: </string>
     <string name="fechaReg">FECHA DE REGRESO: </string>
+    <string name="guardar">Guardar fechas</string>
     <string name="nombreUsuario">Nombre de usuario:</string>
     <string name="correo">Correo electrónico:</string>
     <string name="nombre">Nombre: </string>
