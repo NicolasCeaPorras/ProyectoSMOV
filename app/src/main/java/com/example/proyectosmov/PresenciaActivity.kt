@@ -37,8 +37,8 @@ class PresenciaActivity : AppCompatActivity() {
         if(bundle!=null && !bundle.isEmpty){
 //            companyId = bundle.getString("companyId").toString();
 //            userEmail = bundle.getString("email").toString();
-            companyId = "Prueba"
-            userEmail = "email@pruebas.com"
+            companyId = "7fPPoOKgo9tmPB7YM4ED"
+            userEmail = "pepe@p.com"
         }
 
         //Dar valor a los selectores de mes y año
@@ -49,7 +49,7 @@ class PresenciaActivity : AppCompatActivity() {
 
         monthPicker.minValue = 1
         monthPicker.maxValue = 12
-        monthPicker.value = cal[Calendar.MONTH]
+        monthPicker.value = cal[Calendar.MONTH]+1
 
         val year = cal[Calendar.YEAR]
         yearPicker.minValue = MIN_YEAR
@@ -68,6 +68,7 @@ class PresenciaActivity : AppCompatActivity() {
 
 
     fun get_presencia_mes(month: Int, year: Int) : MutableList<TimeRecord> {
+        var month = month -1
         val db = FirebaseFirestore.getInstance()
         var presencia_mes: MutableList<TimeRecord> = mutableListOf()
 

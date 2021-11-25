@@ -85,7 +85,13 @@ class AgendaActivity : AppCompatActivity() {
                     newTask.task_date = task_date
 
                     //Lo añadimos a la lista de tareas
-                    user.scheduled_tasks!!.add(newTask)
+                    if(user.scheduled_tasks == null){
+                        var new_list: MutableList<ScheduledTask> = mutableListOf()
+                        user.scheduled_tasks = new_list
+                        user.scheduled_tasks!!.add(newTask)
+                    } else {
+                        user.scheduled_tasks!!.add(newTask)
+                    }
 
                     //Guardamos el resultado en Base de datos
                     db.collection("companies").document(companyId).update("users",company.users).addOnCompleteListener({
