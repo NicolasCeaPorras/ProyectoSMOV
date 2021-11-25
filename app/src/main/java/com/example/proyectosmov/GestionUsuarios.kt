@@ -29,7 +29,7 @@ class GestionUsuarios : AppCompatActivity() {
     }
 
 
-    //Se ejecuta al dar click a añadir usuario, inserta un usuario en la base de datos
+    //Se ejecuta al dar click a añadir usuario, inserta un usuario en la base de datos y en la autentificacion
     fun onClickAnadir(v: View?) {
         val db = FirebaseFirestore.getInstance()
         val auth = FirebaseAuth.getInstance()
@@ -50,29 +50,6 @@ class GestionUsuarios : AppCompatActivity() {
                 val toast = Toast.makeText(this,"Usuario añadido con éxito",Toast.LENGTH_SHORT)
                 toast.show()
             }
-    }
-
-    //Se ejecuta al dar click a eliminar usuario, elimina un usuario de la base de datos
-    fun onClickEliminar(v: View?) {
-        /*val db = FirebaseFirestore.getInstance()
-        val email = findViewById<View>(R.id.correoEliminar) as EditText
-        db.collection("usuarios").document(email.text.toString()).delete().addOnCompleteListener {
-            if (it.isSuccessful) {
-
-            } else {
-                alertaNoExisteUsuario()
-            }
-        }*/
-    }
-
-    //Muestra una alerta si se intenta eliminar un usuario de la BD
-    private fun alertaNoExisteUsuario(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error al eliminar")
-        builder.setMessage("El usuario que intenta eliminar no existe en la base de datos. Por favor, intentelo de nuevo")
-        builder.setPositiveButton("Aceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
     }
 
 }
