@@ -73,10 +73,20 @@ class Menu : AppCompatActivity() {
     }
     //Evento que al hacer click te lleva a la pantalla de organigrama
     fun clickOrganigrama(v: View?) {
-        startActivity(Intent(this@Menu, Organigrama::class.java))
+        val bundle = this.intent.extras
+        val compania = bundle!!.getString("company")
+        val intent = Intent(this@Menu, Organigrama::class.java)
+        intent.putExtra("company",compania)
+        startActivity(intent)
     }
     //Evento que al hacer click te lleva a la pantalla de Agenda
     fun clickAgenda(v: View?) {
+        val bundle = this.intent.extras
+        val compania = bundle!!.getString("company")
+        val email = findViewById<TextView>(R.id.textoEmail).text.toString()
+        val intent = Intent(this@Menu, Organigrama::class.java)
+        intent.putExtra("email",email)
+        intent.putExtra("company",compania)
         startActivity(Intent(this@Menu, AgendaActivity::class.java))
     }
 
@@ -99,8 +109,10 @@ class Menu : AppCompatActivity() {
     //Evento que al hacer click te lleva a la pantalla de mi presencia
     fun clickMiPresencia(v: View?) {
         val bundle = this.intent.extras
+        val compania = bundle!!.getString("company")
         val intent = Intent(this@Menu, PresenciaActivity::class.java)
         val email = findViewById<TextView>(R.id.textoEmail).text.toString()
+        intent.putExtra("companyId",compania)
         intent.putExtra("email",email)
         startActivity(intent)
     }
