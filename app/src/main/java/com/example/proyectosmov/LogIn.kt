@@ -41,72 +41,78 @@ class LogIn : AppCompatActivity() {
 
         // Cuando se pulsa el boton Acceder se valida el usuario en firebase
         botonAcceder.setOnClickListener {
-            botonAcceder.isClickable=false
-            botonAcceder.visibility= View.INVISIBLE
-            carga.visibility= View.VISIBLE
+            botonAcceder.isClickable = false
+            botonAcceder.visibility = View.INVISIBLE
+            carga.visibility = View.VISIBLE
             val db = FirebaseFirestore.getInstance()
-            db.collection("companies").document(company.text.toString()).get().addOnSuccessListener { documentSnapshot ->
-                val company = documentSnapshot.toObject<Company>()
-                if (company == null) {
-                    error.text = "No existe dicha compañia en nuestra base de datos. Por favor vuelva a introducir los datos"
-                    botonAcceder.isClickable=true
-                    botonAcceder.visibility= View.VISIBLE
-                    carga.visibility= View.INVISIBLE
-                }
-                else{
-                    val user = getUserByEmail(company, email.text.toString())
-                    if (user == null) {
-                        error.text = "Datos de usuario o contraseña incorrectos. Por favor vuelva a introducir los datos"
-                        botonAcceder.isClickable=true
-                        botonAcceder.visibility= View.VISIBLE
-                        carga.visibility= View.INVISIBLE
-                    }
-                    else{
 
-
-                        // Condiciones para que el login pueda ser correcto
-                        if (password.text.isNotEmpty() and email.text.isNotEmpty()) {
-                            if (email.text.contains("@") and email.text.contains(".")) {
-                                error.text = ""
-                                FirebaseAuth.getInstance()
-                                    .signInWithEmailAndPassword(
-                                        email.text.toString(),
-                                        password.text.toString()
-                                    )
-                                    .addOnCompleteListener {
-                                        if (it.isSuccessful) {
-                                            showMenu(
-                                                it.result?.user?.email ?: ""
-
-                                            )  // Se enseña el menu de la aplicacion y se pasa el mail como parametro
-                                        } else {
-                                            showAlert() // Muestra el mensaje de error
-                                        }
-                                    }
-                            } else {
-                                error.text = "No se ha introducido una dirección de mail válida"
-                                botonAcceder.isClickable=true
-                                botonAcceder.visibility= View.VISIBLE
-                                carga.visibility= View.INVISIBLE
-                            }
+            if (company.text.isNullOrEmpty() or email.text.isNullOrEmpty() or password.text.isNullOrEmpty()) {
+                error.text = "Ninguno de los campos puede estar vacio. Por favor inserte los datos"
+                botonAcceder.isClickable = true
+                botonAcceder.visibility = View.VISIBLE
+                carga.visibility = View.INVISIBLE
+            } else {
+                db.collection("companies").document(company.text.toString()).get()
+                    .addOnSuccessListener { documentSnapshot ->
+                        val company = documentSnapshot.toObject<Company>()
+                        if (company == null) {
+                            error.text =
+                                "No existe dicha compañia en nuestra base de datos. Por favor vuelva a introducir los datos"
+                            botonAcceder.isClickable = true
+                            botonAcceder.visibility = View.VISIBLE
+                            carga.visibility = View.INVISIBLE
                         } else {
-                            error.text = "Los campos usuario y contraseña no pueden estar vacios"
-                            botonAcceder.isClickable=true
-                            botonAcceder.visibility= View.VISIBLE
-                            carga.visibility= View.INVISIBLE
+                            val user = getUserByEmail(company, email.text.toString())
+                            if (user == null) {
+                                error.text =
+                                    "Datos de usuario o contraseña incorrectos. Por favor vuelva a introducir los datos"
+                                botonAcceder.isClickable = true
+                                botonAcceder.visibility = View.VISIBLE
+                                carga.visibility = View.INVISIBLE
+                            } else {
+
+
+                                // Condiciones para que el login pueda ser correcto
+                                if (password.text.isNotEmpty() and email.text.isNotEmpty()) {
+                                    if (email.text.contains("@") and email.text.contains(".")) {
+                                        error.text = ""
+                                        FirebaseAuth.getInstance()
+                                            .signInWithEmailAndPassword(
+                                                email.text.toString(),
+                                                password.text.toString()
+                                            )
+                                            .addOnCompleteListener {
+                                                if (it.isSuccessful) {
+                                                    showMenu(
+                                                        it.result?.user?.email ?: ""
+
+                                                    )  // Se enseña el menu de la aplicacion y se pasa el mail como parametro
+                                                } else {
+                                                    error.text = "Su usuario o contraseña no existen en la base de datos. Por favor, intentelo de nuevo"
+                                                    botonAcceder.isClickable = true
+                                                    botonAcceder.visibility = View.VISIBLE
+                                                    carga.visibility = View.INVISIBLE
+                                                }
+                                            }
+                                    } else {
+                                        error.text =
+                                            "No se ha introducido una dirección de mail válida"
+                                        botonAcceder.isClickable = true
+                                        botonAcceder.visibility = View.VISIBLE
+                                        carga.visibility = View.INVISIBLE
+                                    }
+                                } else {
+                                    error.text =
+                                        "Los campos usuario y contraseña no pueden estar vacios"
+                                    botonAcceder.isClickable = true
+                                    botonAcceder.visibility = View.VISIBLE
+                                    carga.visibility = View.INVISIBLE
+                                }
+                            }
                         }
                     }
-                }
             }
         }
-    }
-    private fun showAlert(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error de autenticación")
-        builder.setMessage("Su usuario o contraseña no existen en la base de datos. Por favor, intentelo de nuevo")
-        builder.setPositiveButton("Aceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
     }
 
     private fun showMenu(email: String){
