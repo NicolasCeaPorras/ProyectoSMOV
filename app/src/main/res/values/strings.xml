@@ -13,6 +13,7 @@
     <string name="gestionUsuario">Gestión de usuarios</string>
     <string name="miPresencia">Mi Presencia</string>
     <string name="anadirUsuario">Añadir usuario</string>
+    <string name="compania">Compañia: </string>
     <string name="eliminarUsuario">Eliminar usuario</string>
     <string name="horasalida">Hora de salida:</string>
     <string name="nota">Escribe la nota que quieres:</string>
@@ -23,7 +24,7 @@
     <string name="correo">Correo electrónico:</string>
     <string name="nombre">Nombre: </string>
     <string name="contrasena">Contraseña: </string>
-    <string name="jerarquia">Jerarquía: </string>
+    <string name="jefe">Jefe: </string>
     <string name="apellidos">Apellidos: </string>
     <string name="telefono">Teléfono: </string>
     <string name="administrador">Administrador: </string>

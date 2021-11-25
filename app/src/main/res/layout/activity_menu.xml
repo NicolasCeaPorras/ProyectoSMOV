@@ -66,8 +66,8 @@
             android:id="@+id/imagenFichar"
             android:layout_width="10dp"
             android:layout_height="27pt"
-            android:layout_marginTop="4pt"
-            android:layout_marginBottom="4pt"
+            android:layout_marginTop="3pt"
+            android:layout_marginBottom="3pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_fichar" />
 
@@ -97,8 +97,8 @@
             android:id="@+id/imagenAgenda"
             android:layout_width="30dp"
             android:layout_height="25pt"
-            android:layout_marginTop="4pt"
-            android:layout_marginBottom="4pt"
+            android:layout_marginTop="3pt"
+            android:layout_marginBottom="3pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_agenda" />
         <TextView
@@ -127,8 +127,8 @@
             android:id="@+id/imagenVacaciones"
             android:layout_width="74dp"
             android:layout_height="25pt"
-            android:layout_marginTop="4pt"
-            android:layout_marginBottom="4pt"
+            android:layout_marginTop="3pt"
+            android:layout_marginBottom="3pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_vacaciones" />
 
@@ -158,8 +158,8 @@
             android:id="@+id/imagenOrganigrama"
             android:layout_width="91dp"
             android:layout_height="25pt"
-            android:layout_marginTop="4pt"
-            android:layout_marginBottom="4pt"
+            android:layout_marginTop="3pt"
+            android:layout_marginBottom="3pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_organigrama"></ImageView>
         <TextView
@@ -179,8 +179,8 @@
         android:background="#505050"/>
     <LinearLayout
         android:id="@+id/gestionUsuarios"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="horizontal"
         android:onClick="clickGestionUsuarios"
         android:visibility="invisible"
@@ -190,8 +190,8 @@
             android:id="@+id/imagenGestionUsuarios"
             android:layout_width="167dp"
             android:layout_height="25pt"
-            android:layout_marginTop="4pt"
-            android:layout_marginBottom="4pt"
+            android:layout_marginTop="3pt"
+            android:layout_marginBottom="3pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_gestion_usuarios"></ImageView>
         <TextView
@@ -221,12 +221,12 @@
 
         <ImageView
             android:id="@+id/miPresencia"
-            android:layout_width="91dp"
+            android:layout_width="89dp"
             android:layout_height="25pt"
-            android:layout_marginTop="4pt"
-            android:layout_marginBottom="4pt"
+            android:layout_marginTop="3pt"
+            android:layout_marginBottom="3pt"
             android:layout_weight="1"
-            app:srcCompat="@drawable/icono_organigrama"></ImageView>
+            app:srcCompat="@drawable/icono_mi_presencia"></ImageView>
         <TextView
             android:id="@+id/textoMiPresencia"
             android:layout_width="wrap_content"
@@ -253,8 +253,8 @@
             android:id="@+id/imagenCerrarSesion"
             android:layout_width="95dp"
             android:layout_height="25pt"
-            android:layout_marginTop="4pt"
-            android:layout_marginBottom="4pt"
+            android:layout_marginTop="3pt"
+            android:layout_marginBottom="3pt"
             android:layout_weight="1"
             app:srcCompat="@drawable/icono_cerrar_sesion"></ImageView>
         <TextView
