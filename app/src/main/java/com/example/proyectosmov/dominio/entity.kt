@@ -61,7 +61,26 @@ data class TimeRecord(
     var office_idHash: String? = null
 )
 
+//Devuelve todos los usuarios que hay en una compania al estilo COUNT(*)
+fun getUserCount(comp : Company): Int{
+    var contador = 0;
+    for (user in comp.users!!){
+        contador++;
+    }
+    return contador
+}
 
+//Devuelve un usuario dependiendo de su ID
+fun getAnUser(comp : Company, ID : Int): User? {
+    var contador = 0;
+    for (user in comp.users!!){
+        if(contador == ID) {
+            return user
+        }
+        contador++
+    }
+    return null
+}
 
 //Funciones para filtar
 // Dada una compañia, devolver el usuario por email:
