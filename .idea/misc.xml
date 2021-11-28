@@ -24,7 +24,11 @@
         <entry key="..\:/Users/nicol/Desktop/Ingenieria_Informatica/4_CURSO/SMOV/app/src/main/res/layout/activity_fichar.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/back.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/drawable/calendar_day_background.xml" value="0.2140625" />
+        <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout/activity_agenda.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/layout/activity_task_of_day.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_task_off_day.xml" value="0.2558876811594203" />
+        <entry key="app/src/main/res/layout/fragment_task_off_day.xml" value="0.2558876811594203" />
       </map>
     </option>
   </component>

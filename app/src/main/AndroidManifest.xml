@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoSMOV">
         <activity
+            android:name=".TaskOfDayActivity"
+            android:exported="false" />
+        <activity
             android:name=".NewCompaniesActivity"
             android:exported="true" />
         <activity
-            android:name=".LogIn"
+            android:name=".AgendaActivity"
             android:exported="true" />
         <activity
             android:name=".PresenciaActivity"
@@ -34,7 +37,7 @@
             android:name=".FicharLogic"
             android:exported="false" />
         <activity
-            android:name=".AgendaActivity"
+            android:name=".LogIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
