@@ -13,7 +13,7 @@
             android:name=".NewCompaniesActivity"
             android:exported="true" />
         <activity
-            android:name=".AgendaActivity"
+            android:name=".LogIn"
             android:exported="true" />
         <activity
             android:name=".PresenciaActivity"
@@ -25,7 +25,7 @@
             android:name=".GestionUsuarios"
             android:exported="true" />
         <activity
-            android:name=".LogIn"
+            android:name=".VacacionesActivity"
             android:exported="false" />
         <activity
             android:name=".Menu"
@@ -34,7 +34,7 @@
             android:name=".FicharLogic"
             android:exported="false" />
         <activity
-            android:name=".VacacionesActivity"
+            android:name=".AgendaActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -12,6 +12,10 @@ import java.util.*
 import android.widget.CalendarView
 import android.widget.CalendarView.OnDateChangeListener
 import java.text.SimpleDateFormat
+import com.applandeo.materialcalendarview.EventDay
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener
+
+
 
 
 class AgendaActivity : AppCompatActivity() {
@@ -52,12 +56,18 @@ class AgendaActivity : AppCompatActivity() {
             removeTask()
         }
 
-        //Asignamos el evento de cambio de fecha en el calendario
-        val calendarView = findViewById<CalendarView>(R.id.agenCalendario)
-        calendarView.setOnDateChangeListener(OnDateChangeListener { view, year, month, dayOfMonth ->
-            selected_date = SimpleDateFormat("dd-M-yyyy").parse(dayOfMonth.toString()+"-"+(month.toInt()+1).toString()+"-"+year.toString())
-            showTasks(selected_date)
+//        //Asignamos el evento de cambio de fecha en el calendario
+        val calendarView = findViewById<com.applandeo.materialcalendarview.CalendarView>(R.id.agenCalendario)
+        calendarView.setOnDayClickListener(object : OnDayClickListener {
+            override fun onDayClick(eventDay: EventDay) {
+                Log.i("AgendaActivity", eventDay.calendar.time.toString())
+                selected_date = eventDay.calendar.time
+                showTasks(selected_date)
+            }
         })
+
+        //Marcar los dias con tareas
+        highlightedTasksDays()
     }
 
     fun addTasck(){
@@ -171,11 +181,35 @@ class AgendaActivity : AppCompatActivity() {
                     selected_item = list.get(position)
                 }
             }
-
         }
 
 
     }
 
+    fun highlightedTasksDays(){
+        val calendarView = findViewById<com.applandeo.materialcalendarview.CalendarView>(R.id.agenCalendario)
+        val calendars: MutableList<Calendar> = ArrayList()
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("companies").document(companyId)
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            val company = documentSnapshot.toObject<Company>()
+            if(company != null){
+                val user = getUserByEmail(company, userEmail)!!
+                val tasks = user.scheduled_tasks
+                if(tasks != null){
+                    val events: MutableList<EventDay> = ArrayList()
+                    for(task in tasks){
+                        val cal = Calendar.getInstance()
+                        events.add(EventDay(cal, R.drawable.icono_agenda))
+                        cal.time = task.task_date
+                        calendars.add(cal)
+                    }
+                    calendarView.setEvents(events)
+                    calendarView.setHighlightedDays(calendars)
+                }
+            }
+        }
+
+    }
 
 }

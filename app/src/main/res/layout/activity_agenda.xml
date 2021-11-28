@@ -19,10 +19,15 @@
             android:layout_margin="20dp"
             >
 
-            <CalendarView
+<!--            <CalendarView-->
+<!--                android:id="@+id/agenCalendario"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="315dp" />-->
+            <com.applandeo.materialcalendarview.CalendarView
                 android:id="@+id/agenCalendario"
-                android:layout_width="fill_parent"
-                android:layout_height="315dp" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:highlightedDaysLabelsColor="@color/green"/>
 
         </LinearLayout>
 
