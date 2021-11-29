@@ -21,7 +21,7 @@
         <com.applandeo.materialcalendarview.CalendarView
             android:id="@+id/vacaCalendario"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
+            android:layout_height="340dp" />
 
     </LinearLayout>
 
@@ -88,13 +88,6 @@
 
             </TextView>
 
-            <ImageView
-                android:layout_marginTop="5dp"
-                android:layout_width="40dp"
-                android:layout_height="35dp"
-                app:srcCompat="@drawable/icono_agenda">
-
-            </ImageView>
         </LinearLayout>
         <TextView
             android:layout_width="fill_parent"
@@ -120,13 +113,7 @@
                 android:layout_marginLeft="30dp">
 
             </TextView>
-            <ImageView
-                android:layout_marginTop="5dp"
-                android:layout_width="40dp"
-                android:layout_height="35dp"
-                app:srcCompat="@drawable/icono_agenda">
 
-            </ImageView>
         </LinearLayout>
 
     </LinearLayout>
