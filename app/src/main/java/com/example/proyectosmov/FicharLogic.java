@@ -1,9 +1,12 @@
 package com.example.proyectosmov;
 
+import static com.example.proyectosmov.dominio.EntityKt.getUserByEmail;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,11 +18,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.proyectosmov.dominio.Company;
+import com.example.proyectosmov.dominio.TimeRecord;
+import com.example.proyectosmov.dominio.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -28,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -39,7 +47,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
     TextView textoHora, hEntrada, hSalida;
     private boolean activo;
     private final Handler mHandler;
-    private String email;
+    private String email,company;
     private String user;
     private Timestamp ficharEntrada, ficharSalida;
     private String btnString;
@@ -48,6 +56,8 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
     Spinner sLista;
     Date hora;
     private FirebaseFirestore mDatabase;
+    //Cambios para la nueva BD
+    Company comp;
     //Referencia usada para comprender el hilo: https://stackoverflow.com/questions/6400846/updating-time-and-date-by-the-second-in-android
     private final Runnable mRunnable = new Runnable() {
         public void run() {
@@ -84,8 +94,9 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             }
             //email = bundle.getString("email");
             email = "a@a.com";
+            company = bundle.getString("company");
         }
-
+        email = "a@a.com";
         Log.d(TAG,"El valor de email es:"+email);
 
 
@@ -112,7 +123,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
 
 
         //Actualizar Spinner
-         sLista= findViewById(R.id.selOficina);
+        sLista= findViewById(R.id.selOficina);
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Oficina 1");
         arrayList.add("Oficina 2");
@@ -135,39 +146,39 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
         //Comprobar si existe entradaFichar y salidaFichar en la BD anteriormente.
 
         mDatabase.collection("usuarios").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-    @Override
-    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-        if (task.isSuccessful()) {
-            DocumentSnapshot document = task.getResult();
-            if (document.exists()) {
-                ficharEntrada= (Timestamp) document.get("entradaFichar");
-                ficharSalida = (Timestamp) document.get("salidaFichar");
-                SimpleDateFormat formato= new SimpleDateFormat("HH:mm:ss");
-                Date hE= ficharEntrada.toDate();
-                String entradaFormato = formato.format(hE);
-                Date hS= ficharSalida.toDate();
-                String salidaFormato = formato.format(hS);
-                btnString = (String) document.get("btnFichar");
-                Log.d(TAG, "Boton es: " + document.get("btnFichar"));
-                if(btnString != null) {
-                    entrada.setText(btnString);
-                    if(btnString.equals("Entrada")) {
-                        hEntrada.setText(entradaFormato);
-                        hSalida.setText(salidaFormato);
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        ficharEntrada= (Timestamp) document.get("entradaFichar");
+                        ficharSalida = (Timestamp) document.get("salidaFichar");
+                        SimpleDateFormat formato= new SimpleDateFormat("HH:mm:ss");
+                        Date hE= ficharEntrada.toDate();
+                        String entradaFormato = formato.format(hE);
+                        Date hS= ficharSalida.toDate();
+                        String salidaFormato = formato.format(hS);
+                        btnString = (String) document.get("btnFichar");
+                        Log.d(TAG, "Boton es: " + document.get("btnFichar"));
+                        if(btnString != null) {
+                            entrada.setText(btnString);
+                            if(btnString.equals("Entrada")) {
+                                hEntrada.setText(entradaFormato);
+                                hSalida.setText(salidaFormato);
+                            } else {
+                                hEntrada.setText(entradaFormato);
+                            }
+                        }
+                        Log.d(TAG, "Fichar entrada es: " + document.get("entradaFichar"));
+                        Log.d(TAG, "Fichar salida es: " + document.get("salidaFichar"));
                     } else {
-                        hEntrada.setText(entradaFormato);
+                        Log.d(TAG, "No se encuentra el valor.");
                     }
+                } else {
+                    Log.d(TAG, "fallo con ", task.getException());
                 }
-                Log.d(TAG, "Fichar entrada es: " + document.get("entradaFichar"));
-                Log.d(TAG, "Fichar salida es: " + document.get("salidaFichar"));
-            } else {
-                Log.d(TAG, "No se encuentra el valor.");
             }
-        } else {
-            Log.d(TAG, "fallo con ", task.getException());
-        }
-    }
-});
+        });
     }
 
     private void actualizarHora() {
@@ -177,6 +188,13 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        //Timer entre click para cada boton de 2 segundos
+        Button boton = findViewById(R.id.buttonFichar);
+        boton.setEnabled(false);
+        //Desactivación del boton 2 segundos
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            boton.setEnabled(true);
+        }, 2000);
         if (entrada.getText().toString().equals("Salida")) {
             Log.d(TAG, "onClicked: " + entrada.getText().toString());
             hora = Calendar.getInstance().getTime();
@@ -190,6 +208,35 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             stringBtnFichar.put("btnFichar",entrada.getText().toString());
             ficharSalida = Timestamp.now();
             horaSalida.put("salidaFichar",ficharSalida);
+
+
+            //CODIGO NUEVO NO TESTEADO
+            /*
+            DocumentReference docRef = mDatabase.collection(company).document(email);
+            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                     comp = documentSnapshot.toObject(Company.class);
+                }
+            });
+            if(comp != null){
+                User user = getUserByEmail(comp,email);
+                if(user != null){
+                    ArrayList<TimeRecord> tr = new ArrayList<TimeRecord>();
+                    TimeRecord temp =new TimeRecord();
+                    temp.setCreation_date(new Date());
+                    temp.setEnd_hour(hora);
+                    tr.add(temp);
+                    user.setTime_records(tr);
+                }
+            DocumentReference docuRef = mDatabase.collection(company).document("Pruebas");
+            docuRef.update().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                }
+            });
+            */
+            //CODIGO DE LA ANTIGUA BD
             mDatabase.collection("usuarios").document(email).set(horaSalida, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -214,7 +261,9 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                             Log.w(TAG, "Error writing document", e);
                         }
                     });
-            }
+
+
+        }
         else if ( entrada.getText().toString().equals("Entrada")) {
             Log.d( TAG,"onClicked: "+entrada.getText().toString());
             hora = Calendar.getInstance().getTime();
@@ -259,7 +308,6 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
         super.onSaveInstanceState(outState);
         outState.putString("btnString",entrada.getText().toString());
     }
-
     @Override
     public void onRestoreInstanceState(Bundle estadoGuardado) {
         super.onRestoreInstanceState(estadoGuardado);

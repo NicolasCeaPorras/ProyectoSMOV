@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoSMOV">
         <activity
+            android:name=".TaskOfDayActivity"
+            android:exported="false" />
+        <activity
             android:name=".NewCompaniesActivity"
             android:exported="true" />
         <activity
@@ -25,13 +28,13 @@
             android:name=".GestionUsuarios"
             android:exported="true" />
         <activity
-            android:name=".VacacionesActivity"
+            android:name=".FicharLogic"
             android:exported="false" />
         <activity
             android:name=".Menu"
             android:exported="false" />
         <activity
-            android:name=".FicharLogic"
+            android:name=".VacacionesActivity"
             android:exported="false" />
         <activity
             android:name=".LogIn"
