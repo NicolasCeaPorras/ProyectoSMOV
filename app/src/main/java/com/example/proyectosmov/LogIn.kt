@@ -116,10 +116,16 @@ class LogIn : AppCompatActivity() {
     }
 
     private fun showMenu(email: String){
+        val carga = findViewById<pl.droidsonroids.gif.GifImageView>(R.id.gifCarga)
+        val botonAcceder = findViewById<Button>(R.id.botonAcceder)
+
         val menuIntent = Intent(this, Menu::class.java).apply{
             putExtra("email", email)
             putExtra("company", findViewById<EditText>(R.id.companiaUsuario).text.toString())
         }
         startActivity(menuIntent)
+        botonAcceder.isClickable = true
+        botonAcceder.visibility = View.VISIBLE
+        carga.visibility = View.INVISIBLE
     }
 }
