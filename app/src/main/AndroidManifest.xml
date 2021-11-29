@@ -28,13 +28,13 @@
             android:name=".GestionUsuarios"
             android:exported="true" />
         <activity
-            android:name=".VacacionesActivity"
+            android:name=".FicharLogic"
             android:exported="false" />
         <activity
             android:name=".Menu"
             android:exported="false" />
         <activity
-            android:name=".FicharLogic"
+            android:name=".VacacionesActivity"
             android:exported="false" />
         <activity
             android:name=".LogIn"

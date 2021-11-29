@@ -2,8 +2,10 @@ package com.example.proyectosmov
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.CalendarView
 import android.widget.TextView
 import com.example.proyectosmov.R
@@ -12,6 +14,10 @@ import com.example.proyectosmov.dominio.ScheduledTask
 import java.text.SimpleDateFormat
 import java.time.YearMonth
 import java.util.*
+import android.os.Looper
+
+
+
 
 class VacacionesActivity : AppCompatActivity() {
     var companyId : String = ""
@@ -84,7 +90,9 @@ class VacacionesActivity : AppCompatActivity() {
     fun onClickGuardar(view: android.view.View) {
         val diasDispView = findViewById<TextView>(R.id.diasVaca)
         var intervalo = 0
-        Toast.makeText(this, "¡Fechas Guardadas!", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "¡Fechas Guardadas!", Toast.LENGTH_SHORT).show()
+        val boton = findViewById<Button>(R.id.buttonVacaciones)
+
         var cal1 : Calendar = Calendar.getInstance()
         var cal2 : Calendar = Calendar.getInstance()
 
@@ -114,6 +122,9 @@ class VacacionesActivity : AppCompatActivity() {
         Log.i("Vacaciones", "Los dias son: " + fechaSal.day.toString())
 
         diasDispView.text = diasDisp.toString()
+        boton.isEnabled = false;
+        //Desactivación del boton 2 segundos y activación sucesiva
+        Handler(Looper.getMainLooper()).postDelayed({ boton.isEnabled = true }, 2000)
     }
 
 }

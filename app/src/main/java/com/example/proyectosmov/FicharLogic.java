@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -91,10 +92,11 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             if(bundle.isEmpty()==true){
                 Log.d(TAG,"Bundle esta vacio");
             }
-            email = bundle.getString("email");
+            //email = bundle.getString("email");
+            email = "a@a.com";
             company = bundle.getString("company");
         }
-
+        email = "a@a.com";
         Log.d(TAG,"El valor de email es:"+email);
 
 
@@ -186,6 +188,13 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        //Timer entre click para cada boton de 2 segundos
+        Button boton = findViewById(R.id.buttonFichar);
+        boton.setEnabled(false);
+        //Desactivación del boton 2 segundos
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            boton.setEnabled(true);
+        }, 2000);
         if (entrada.getText().toString().equals("Salida")) {
             Log.d(TAG, "onClicked: " + entrada.getText().toString());
             hora = Calendar.getInstance().getTime();
@@ -199,6 +208,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             stringBtnFichar.put("btnFichar",entrada.getText().toString());
             ficharSalida = Timestamp.now();
             horaSalida.put("salidaFichar",ficharSalida);
+
 
             //CODIGO NUEVO NO TESTEADO
             /*
