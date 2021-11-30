@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondoapp"
     android:orientation="vertical"
-    android:layout_margin="40dp"
+    android:layout_margin="20dp"
     tools:context=".fragmentos.ConfirmRegisterFragment">
 
 
@@ -15,11 +15,11 @@
         android:id="@+id/CondicionesDeRegistroTitle"
         android:layout_width="match_parent"
         android:layout_height="111dp"
-        android:text="@string/CondicionesDeRegistroTitle"
-        android:textColor="#009688"
         android:layout_marginTop="20dp"
+        android:text="@string/CondicionesDeRegistroTitle"
         android:textAlignment="center"
-        android:textSize="22sp"/>
+        android:textColor="#FF5722"
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/CondicionesDeRegistroText"

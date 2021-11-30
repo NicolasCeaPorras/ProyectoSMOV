@@ -1,110 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".PresenciaActivity"
-android:orientation="vertical"
-android:background="@drawable/fondo">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondoapp2"
+    android:orientation="vertical"
+    tools:context=".PresenciaActivity">
+
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_weight="4"
+            android:text="@string/PresenciaCheckDate"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="15pt"
+            android:textStyle="bold" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="123dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:layout_weight="3"
-                android:text="@string/PresenciaCheckDate" />
-
-            <NumberPicker
-                android:id="@+id/picker_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp">
-
-            </NumberPicker>
-
-            <NumberPicker
-                android:id="@+id/picker_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </NumberPicker>
-        </LinearLayout>
-
-        <LinearLayout
+        <NumberPicker
+            android:id="@+id/picker_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/buttonPresencia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="2"
-                android:text="@string/ButtonMiPresenciaChangeDate" />
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="20dp"
+            android:theme="@style/Theme.Picker"></NumberPicker>
 
-        </LinearLayout>
+        <NumberPicker
+            android:id="@+id/picker_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.Picker"></NumberPicker>
+    </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/layoutTabla"
-            android:gravity="center">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
-            <TableLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="100dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-                <!--       Cabecera         -->
-                <TableRow android:background="#0079D6" android:padding="15dp">
+        <Button
+            android:id="@+id/buttonPresencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#06A7FD"
+            android:text="@string/ButtonMiPresenciaChangeDate"
+            android:textColorLink="#FFFFFF"
+            app:icon="@drawable/ic_baseline_perm_contact_calendar_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.939" />
+    </LinearLayout>
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="15"
-                        android:text="@string/Header1PresenciaTable" />
+    <LinearLayout
+        android:id="@+id/layoutTabla"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginBottom="40dp">
 
-                    <TextView android:text="@string/Header2PresenciaTable"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="15">
-                    </TextView>
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="50dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <!--       Cabecera         -->
 
-                    <TextView android:text="@string/Header3PresenciaTable"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="15">
-                    </TextView>
-                </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#06A7FD"
+                android:padding="15dp">
 
-                <ScrollView android:background="#99FFFF" android:padding="5dp" android:layout_height="120dp">
-                    <TableLayout android:id="@+id/tablaPresencia"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent">
-                    </TableLayout>
-                </ScrollView>
-            </TableLayout>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="15"
+                    android:text="@string/Header1PresenciaTable"
+                    android:textColor="@color/white"
+                    android:textSize="7pt"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.085"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.221" />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="15"
+                    android:text="@string/Header2PresenciaTable"
+                    android:textColor="@color/white"
+                    android:textSize="7pt"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.085"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.221"></TextView>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="15"
+                    android:text="@string/Header3PresenciaTable"
+                    android:textColor="@color/white"
+                    android:textSize="7pt"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.085"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.221"></TextView>
+            </TableRow>
+
+            <ScrollView
+                android:layout_height="299dp"
+                android:background="#FFFFFF"
+                android:padding="5dp">
+
+                <TableLayout
+                    android:id="@+id/tablaPresencia"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"></TableLayout>
+            </ScrollView>
+        </TableLayout>
     </LinearLayout>
 
 </LinearLayout>

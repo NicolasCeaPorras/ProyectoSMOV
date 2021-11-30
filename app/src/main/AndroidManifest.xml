@@ -13,13 +13,13 @@
             android:name=".TaskOfDayActivity"
             android:exported="false" />
         <activity
-            android:name=".NewCompaniesActivity"
+            android:name=".VacacionesActivity"
             android:exported="true" />
         <activity
             android:name=".AgendaActivity"
             android:exported="true" />
         <activity
-            android:name=".PresenciaActivity"
+            android:name=".NewCompaniesActivity"
             android:exported="true" />
         <activity
             android:name=".Organigrama"
@@ -34,10 +34,10 @@
             android:name=".Menu"
             android:exported="false" />
         <activity
-            android:name=".LogIn"
+            android:name=".PresenciaActivity"
             android:exported="false" />
         <activity
-            android:name=".VacacionesActivity"
+            android:name=".LogIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

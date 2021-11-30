@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondoapp"
     android:orientation="vertical"
-    android:layout_margin="40dp"
+    android:layout_margin="20dp"
     tools:context=".fragmentos.MainOfficeFragment">
 
     <TextView

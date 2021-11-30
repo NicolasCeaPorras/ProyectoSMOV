@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".AgendaActivity"
     android:orientation="vertical"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondoapp"
     >
     <TextView
         android:id="@+id/textView3"
