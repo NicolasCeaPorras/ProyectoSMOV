@@ -5,27 +5,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondoapp3"
     android:orientation="vertical"
-    android:layout_margin="40dp"
+    android:paddingTop="40dp"
     tools:context=".fragmentos.ConfirmRegisterFragment">
 
 
     <TextView
         android:id="@+id/CondicionesDeRegistroTitle"
-        android:layout_width="match_parent"
-        android:layout_height="111dp"
         android:text="@string/CondicionesDeRegistroTitle"
-        android:textColor="#009688"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-black"
+        android:minHeight="48dp"
         android:textAlignment="center"
-        android:textSize="22sp"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/CondicionesDeRegistroText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/CondicionesDeRegistroText"
-        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="40dp"
         android:textAlignment="center"/>
 </LinearLayout>

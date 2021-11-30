@@ -13,13 +13,13 @@
             android:name=".TaskOfDayActivity"
             android:exported="false" />
         <activity
-            android:name=".NewCompaniesActivity"
+            android:name=".PresenciaActivity"
             android:exported="true" />
         <activity
             android:name=".AgendaActivity"
             android:exported="true" />
         <activity
-            android:name=".PresenciaActivity"
+            android:name=".NewCompaniesActivity"
             android:exported="true" />
         <activity
             android:name=".Organigrama"

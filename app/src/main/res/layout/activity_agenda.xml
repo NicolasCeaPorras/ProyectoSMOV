@@ -7,18 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".AgendaActivity"
     android:orientation="vertical"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondoapp2"
     >
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:minHeight="48dp"
-        android:layout_marginTop="20dp"
         android:text="Calendario de Actividades"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF" />
 
         <LinearLayout
             android:layout_width="fill_parent"

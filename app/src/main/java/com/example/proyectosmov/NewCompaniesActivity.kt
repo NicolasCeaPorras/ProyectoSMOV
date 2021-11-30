@@ -48,6 +48,7 @@ class NewCompaniesActivity : progressMobileStepper() {
     }
 
     override fun init(): MutableList<Class<*>> {
+        supportActionBar!!.hide()
         Log.i("NewCompaniesActivitt","asdafafsvadfsv")
         stepperFragmentList.add(CompanyDataFragment::class.java)
         stepperFragmentList.add(MainOfficeFragment::class.java)
@@ -108,6 +109,7 @@ class NewCompaniesActivity : progressMobileStepper() {
             putExtra("companyId", companyId)
         }
         startActivity(menuIntent)
+        finish()
     }
 
 }

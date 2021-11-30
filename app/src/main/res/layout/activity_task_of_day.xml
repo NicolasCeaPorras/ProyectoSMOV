@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".TaskOfDayActivity"
     android:orientation="vertical"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondoapp"
     >
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/fondo"
+        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical">
 
