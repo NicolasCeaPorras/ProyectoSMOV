@@ -31,7 +31,6 @@ class VacacionesActivity : AppCompatActivity() {
     var fechaSal = Date()
     var fechaReg = Date()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vacaciones)
@@ -39,13 +38,13 @@ class VacacionesActivity : AppCompatActivity() {
         val bundle = getIntent().getExtras();
         if (bundle != null && !bundle.isEmpty) {
             //Quitar comentarios para que sea dinamico
-            //companyId = bundle.getString("company").toString();
-            //userEmail = bundle.getString("email").toString();
+            companyID = bundle.getString("company").toString()
+            email = bundle.getString("email").toString()
 
         }
         //Comentar para que sea dinamico
-        companyID = "Pruebas"
-        email = "a@a.com"
+        //companyID = "Pruebas"
+        //email = "email@pruebas.com"
 
         val calendarView =
             findViewById<com.applandeo.materialcalendarview.CalendarView>(R.id.vacaCalendario)

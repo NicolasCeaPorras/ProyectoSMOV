@@ -59,6 +59,7 @@
                 android:layout_marginLeft="2dp"
                 android:fontFamily="sans-serif-black"
                 android:id="@+id/diasVaca"
+                android:textColor="#0A43AC"
                 android:textSize="28sp">
 
             </TextView>
@@ -103,7 +104,6 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#0A43AC"
             android:orientation="horizontal">
 
             <TextView
@@ -115,6 +115,7 @@
                 android:background="@drawable/back"
                 android:layout_marginTop="5dp"
                 android:textSize="16sp"
+                android:textColor="#0A43AC"
                 android:layout_marginLeft="30dp">
 
             </TextView>

@@ -157,3 +157,11 @@ fun getDiasDispVac( dias: Int ,user: User) : Int{
     }
     return diasDisp
 }
+fun getUltimoTimeRecord(user: User) : MutableList<TimeRecord>{
+    var tr : MutableList<TimeRecord> = mutableListOf()
+    if(user.time_records != null){
+        tr.lastIndexOf(TimeRecord())
+    }
+    tr.lastIndex
+    return tr
+}

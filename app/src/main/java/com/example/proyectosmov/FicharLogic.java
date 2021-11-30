@@ -30,6 +30,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,7 +60,6 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
     Date hora;
     private FirebaseFirestore mDatabase;
     //Cambios para la nueva BD
-    Company comp;
     //Referencia usada para comprender el hilo: https://stackoverflow.com/questions/6400846/updating-time-and-date-by-the-second-in-android
     private final Runnable mRunnable = new Runnable() {
         public void run() {
@@ -92,11 +94,11 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             if(bundle.isEmpty()==true){
                 Log.d(TAG,"Bundle esta vacio");
             }
-            //email = bundle.getString("email");
-            email = "a@a.com";
+            email = bundle.getString("email");
+            //email = "a@a.com";
             company = bundle.getString("company");
         }
-        email = "a@a.com";
+        //email = "a@a.com";
         Log.d(TAG,"El valor de email es:"+email);
 
 
@@ -144,7 +146,8 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             }
         });
         //Comprobar si existe entradaFichar y salidaFichar en la BD anteriormente.
-
+        //TO DO (HAY QUE USAR LA NUEVA BD)
+        /*
         mDatabase.collection("usuarios").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -178,7 +181,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                     Log.d(TAG, "fallo con ", task.getException());
                 }
             }
-        });
+        }); */
     }
 
     private void actualizarHora() {
@@ -210,32 +213,56 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             horaSalida.put("salidaFichar",ficharSalida);
 
 
-            //CODIGO NUEVO NO TESTEADO
-            /*
-            DocumentReference docRef = mDatabase.collection(company).document(email);
+            //CODIGO NUEVO  TESTEADO
+            DocumentReference docRef = mDatabase.collection("companies").document(company);
             docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                     comp = documentSnapshot.toObject(Company.class);
+                    Company comp = documentSnapshot.toObject(Company.class);
+                    if (comp!=null){
+                        Log.i("FicharLog", "Dentro del object Company Entrada");
+                        User user = getUserByEmail(comp,email);
+                        if(user!=null){
+                            TimeRecord tiempoFichar = new TimeRecord();
+                            tiempoFichar.setEnd_hour(hora);
+
+                            if (user.getTime_records() == null){
+                                Log.i(TAG, "No existe lista, creando...");
+                                List<TimeRecord> lista = new ArrayList<>();
+                                user.setTime_records(lista);
+                                user.getTime_records().add(tiempoFichar);
+                            }else {
+                                Log.i(TAG, "Ya hay lista, metiendo nuevos datos...");
+                                user.getTime_records().add(tiempoFichar);
+                            }
+                            mDatabase.collection("companies").document(company).update("users",comp.getUsers()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "Actualización de usuario sin problemas!");
+                                }
+                            })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Fallo al actualizar usuario", e);
+                                        }
+                                    });
+                             /*
+                             String oficina = sLista.getSelectedItem().toString();
+                             MessageDigest md = null;
+                             try {
+                                 md = MessageDigest.getInstance("MD5");
+                                 Number hashPassword =  BigInteger(1, md.digest(oficina.toByteArray())).toString(16).padStart(32, '0');
+                             } catch (NoSuchAlgorithmException e) {
+                                 e.printStackTrace();
+                             }
+                             */
+                        }
+                    }
                 }
             });
-            if(comp != null){
-                User user = getUserByEmail(comp,email);
-                if(user != null){
-                    ArrayList<TimeRecord> tr = new ArrayList<TimeRecord>();
-                    TimeRecord temp =new TimeRecord();
-                    temp.setCreation_date(new Date());
-                    temp.setEnd_hour(hora);
-                    tr.add(temp);
-                    user.setTime_records(tr);
-                }
-            DocumentReference docuRef = mDatabase.collection(company).document("Pruebas");
-            docuRef.update().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                }
-            });
-            */
+
+            /*
             //CODIGO DE LA ANTIGUA BD
             mDatabase.collection("usuarios").document(email).set(horaSalida, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -262,7 +289,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                         }
                     });
 
-
+*/
         }
         else if ( entrada.getText().toString().equals("Entrada")) {
             Log.d( TAG,"onClicked: "+entrada.getText().toString());
@@ -276,6 +303,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             Map<String, Object> horaEntrada = new HashMap<>();
             ficharEntrada = Timestamp.now();
             horaEntrada.put("entradaFichar",ficharEntrada);
+            /*
             mDatabase.collection("usuarios").document(email).set(horaEntrada, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -300,6 +328,57 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                             Log.w(TAG, "Error writing document", e);
                         }
                     });
+
+             */
+
+            DocumentReference docRef = mDatabase.collection("companies").document(company);
+            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                     Company comp = documentSnapshot.toObject(Company.class);
+                     if (comp!=null){
+                         Log.i("FicharLog", "Dentro del object Company Entrada");
+                         User user = getUserByEmail(comp,email);
+                         if(user!=null){
+                             TimeRecord tiempoFichar = new TimeRecord();
+                             tiempoFichar.setStart_hour(hora);
+                             tiempoFichar.setCreation_date( new Date());
+
+                             if (user.getTime_records() == null){
+                                 Log.i(TAG, "No existe lista, creando...");
+                                 List<TimeRecord> lista = new ArrayList<>();
+                                 user.setTime_records(lista);
+                                 user.getTime_records().add(tiempoFichar);
+                             }else {
+                                 Log.i(TAG, "Ya hay lista, metiendo nuevos datos...");
+                                 user.getTime_records().add(tiempoFichar);
+                             }
+                             mDatabase.collection("companies").document(company).update("users", comp.getUsers()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                 @Override
+                                 public void onSuccess(Void aVoid) {
+                                     Log.d(TAG, "Actualización de usuario sin problemas!");
+                                 }
+                             })
+                                     .addOnFailureListener(new OnFailureListener() {
+                                         @Override
+                                         public void onFailure(@NonNull Exception e) {
+                                             Log.w(TAG, "Fallo al actualizar usuario", e);
+                                         }
+                                     });
+                             /*
+                             String oficina = sLista.getSelectedItem().toString();
+                             MessageDigest md = null;
+                             try {
+                                 md = MessageDigest.getInstance("MD5");
+                                 Number hashPassword =  BigInteger(1, md.digest(oficina.toByteArray())).toString(16).padStart(32, '0');
+                             } catch (NoSuchAlgorithmException e) {
+                                 e.printStackTrace();
+                             }
+                             */
+                         }
+                     }
+                }
+            });
         }
     }
 /*  Spaguetti Code
