@@ -24,7 +24,8 @@ data class User(
     var active_input: ActiveInput? = null,
     var holiday_periods: MutableList<HolidayPeriod>? = null,
     var scheduled_tasks: MutableList<ScheduledTask>? = null,
-    var time_records: MutableList<TimeRecord>? = null
+    var time_records: MutableList<TimeRecord>? = null,
+    var diasVac: Int? = null
 
 )
 data class Office(
@@ -46,6 +47,7 @@ data class HolidayPeriod(
     var creation_date: Date? = null,
     var start_date: Date? = null,
     var end_date: Date? = null,
+    var days_left: Int? = null,
 )
 data class ScheduledTask(
     var creation_date: Date? = null,
@@ -132,4 +134,26 @@ fun gettasksByUserAndDate(user : User, date : Date) : MutableList<ScheduledTask>
 
     }
     return scheduled_tasks_return
+}
+
+//Metodo para obtener los dias disponibles de vacaciones de un usuario
+fun getDiasDispVac( dias: Int ,user: User) : Int{
+    var diasDisp : Int = dias
+    //Log.i("getDiasDispVac", "No llegan los dias ")
+    var cont : Int? = 0
+    if(user.holiday_periods != null) {
+        for (holidayPeriod in user.holiday_periods!!) {
+            var cal1 = Calendar.getInstance()
+            var cal2 = Calendar.getInstance()
+            cal1.time = holidayPeriod.start_date
+            cal2.time = holidayPeriod.end_date
+            if (cont != null) {
+                cont = cont + ((cal2.get(Calendar.DAY_OF_YEAR)) - (cal1.get(Calendar.DAY_OF_YEAR)))
+            }
+        }
+        if (diasDisp != null) {
+            diasDisp = diasDisp - cont!!
+        }
+    }
+    return diasDisp
 }

@@ -10,18 +10,20 @@ import android.widget.CalendarView
 import android.widget.TextView
 import com.example.proyectosmov.R
 import android.widget.Toast
-import com.example.proyectosmov.dominio.ScheduledTask
 import java.text.SimpleDateFormat
 import java.time.YearMonth
 import java.util.*
 import android.os.Looper
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
+import com.example.proyectosmov.dominio.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 
 
 class VacacionesActivity : AppCompatActivity() {
-    var companyId : String = ""
-    var userEmail : String = ""
+    var companyID : String = ""
+    var email : String = ""
     var selected_date : Date = Date()
     var selected_item : ScheduledTask? = null
     var Click= 0
@@ -35,21 +37,21 @@ class VacacionesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_vacaciones)
         supportActionBar!!.hide()
         val bundle = getIntent().getExtras();
-        if(bundle!=null && !bundle.isEmpty){
-           companyId = bundle.getString("company").toString();
-           userEmail = bundle.getString("email").toString();
+        if (bundle != null && !bundle.isEmpty) {
+            //Quitar comentarios para que sea dinamico
+            //companyId = bundle.getString("company").toString();
+            //userEmail = bundle.getString("email").toString();
 
-            //companyId = "7fPPoOKgo9tmPB7YM4ED"
-            //userEmail = "pepe@p.com"
         }
-        val calendarView = findViewById<com.applandeo.materialcalendarview.CalendarView>(R.id.vacaCalendario)
+        //Comentar para que sea dinamico
+        companyID = "Pruebas"
+        email = "a@a.com"
+
+        val calendarView =
+            findViewById<com.applandeo.materialcalendarview.CalendarView>(R.id.vacaCalendario)
         val fechaSalView = findViewById<TextView>(R.id.fechSal)
         val fechaRegView = findViewById<TextView>(R.id.fechReg)
         val diasDispView = findViewById<TextView>(R.id.diasVaca)
-        //companyId = "7fPPoOKgo9tmPB7YM4ED"
-        //userEmail = "pepe@p.com"
-
-
 
         //desactivamos el calendario al inicio
         calendarView.setVisibility(View.INVISIBLE)
@@ -61,24 +63,46 @@ class VacacionesActivity : AppCompatActivity() {
             override fun onDayClick(eventDay: EventDay) {
                 Log.i("AgendaActivity", eventDay.calendar.time.toString())
                 selected_date = eventDay.calendar.time
-                if(Click==1){
+                if (Click == 1) {
                     fechaSalView.setText(selected_date.toString())
                     fechaSal = selected_date
                     Log.i("Vacaciones", "La fecha es: " + selected_date.toString())
 
-                }else {
+                } else {
                     fechaRegView.setText(selected_date.toString())
                     fechaReg = selected_date
                     Log.i("Vacaciones", "La fecha es: " + selected_date.toString())
                 }
             }
         })
+        //Obtenemos los diasDisponibles que le quedan al usuario
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("companies").document(companyID)
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            val company = documentSnapshot.toObject<Company>()
+            if (company != null) {
+                Log.i("VacacionesAct", "Dentro del object Company 1")
 
+                val user = getUserByEmail(company, email)
+                if (user != null) {
+                    var diasVaca : Int = user.diasVac!!
+                    //SI EL USUARIO NO TIENE DIAS ASIGNADOS PORQUE ES ANTIGUO
+                    //LE PONEMOS POR DEFECTO 14 (CAMBIAR EN EL FUTURO)
+                    if(diasDisp==null) {
+                        //Para testear
+                        diasDisp = 14;
+                    }else
+                        Log.i("VacacionesAct", "Aqui llego")
 
+                    diasDisp = getDiasDispVac(diasVaca,user)
+                    Log.i("VacacionesAct", "Diasdisp de la BD: "+diasDisp.toString())
+                    diasDispView.text = diasDisp.toString()
+                }
+            }
 
-
-
+        }
     }
+
     fun clickFechaSal(v: View?) {
         val calendarView = findViewById<com.applandeo.materialcalendarview.CalendarView>(R.id.vacaCalendario)
         calendarView.setVisibility(View.VISIBLE)
@@ -104,19 +128,8 @@ class VacacionesActivity : AppCompatActivity() {
         cal1.time = fechaSal
         cal2.time = fechaReg
 
-
-            diasDisp = (diasDisp - ((cal2.get(Calendar.DAY_OF_YEAR)) - (cal1.get(Calendar.DAY_OF_YEAR))))
-
-        /*
-        else if (fechaSal.month<fechaReg.month) {
-            val yearMonthObject: YearMonth = YearMonth.of(fechaSal.year, fechaSal.month)
-            val yearMonth2Object: YearMonth = YearMonth.of(fechaReg.year, fechaReg.month)
-            val dias1: Int = yearMonthObject.lengthOfMonth() //28
-            val dias2: Int = yearMonth2Object.lengthOfMonth() //28
-
-            diasDisp = (diasDisp - ((dias1+fechaReg.day) - (dias2+fechaSal.day)))
-        }
-        */
+        //Calculo del los dias disponibles que le quedan al usuario de vacaciones una vez ha seleccionado las fechas
+        diasDisp = (diasDisp - ((cal2.get(Calendar.DAY_OF_YEAR)) - (cal1.get(Calendar.DAY_OF_YEAR))))
 
         Log.i("Vacaciones", "Los dias son: " + diasDisp.toString())
         Log.i("Vacaciones", "Los dias son: " + fechaReg.day.toString())
@@ -126,6 +139,39 @@ class VacacionesActivity : AppCompatActivity() {
         boton.isEnabled = false;
         //Desactivación del boton 2 segundos y activación sucesiva
         Handler(Looper.getMainLooper()).postDelayed({ boton.isEnabled = true }, 2000)
+
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("companies").document(companyID)
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            val company = documentSnapshot.toObject<Company>()
+            if (company!=null){
+                Log.i("VacacionesAct", "Dentro del object Company")
+
+                val user = getUserByEmail(company, email)
+                if(user !=null){
+                    var vacPeriodo : HolidayPeriod = HolidayPeriod()
+                    //Damos los valores nuevos
+                    vacPeriodo.creation_date=Date()
+                    vacPeriodo.days_left=diasDisp
+                    vacPeriodo.start_date=fechaSal
+                    vacPeriodo.end_date=fechaReg
+
+                 //Comprobación de que el la lista contiene o no algo
+                 if(user.holiday_periods == null){
+                     var lista: MutableList<HolidayPeriod> = mutableListOf()
+                     user.holiday_periods = lista
+                     user.holiday_periods!!.add(vacPeriodo)
+                 }else user.holiday_periods!!.add(vacPeriodo)
+
+                 //Actualizamos la BD con los nuevos valores
+                 db.collection("companies").document(companyID).update("users",company.users).addOnSuccessListener {
+                     Log.d("VacacionesAct", "Datos actualizados sin problemas") }
+                     .addOnFailureListener { e -> Log.w("VacacionesAct", "Fallo en la actualizacion", e) }
+                }
+
+            }
+
+        }
     }
 
 }
