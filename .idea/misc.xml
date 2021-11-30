@@ -5,13 +5,14 @@
       <map>
         <entry key="../../../../../../../../layout/custom_preview.xml" value="0.2375" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/drawable/back.xml" value="0.1796875" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_agenda.xml" value="0.176" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_fichar.xml" value="0.1" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_ficho.xml" value="0.1" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_menu.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_vacaciones.xml" value="0.10400000000000001" />
+        <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/activity_vacaciones.xml" value="0.2" />
         <entry key="..\:/Users/Diego Fraile Villa/AndroidStudioProjects/ProyectoSMOV/app/src/main/res/layout/fichar.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/Gus/Documents/Universidad/SMOV/Practica Final/ProyectoSMOV/app/src/main/res/layout/activity_anadir_usuario.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Gus/Documents/Universidad/SMOV/Practica Final/ProyectoSMOV/app/src/main/res/layout/activity_fichar.xml" value="0.25416666666666665" />
@@ -21,21 +22,15 @@
         <entry key="..\:/Users/Gus/Documents/Universidad/SMOV/Practica Final/ProyectoSMOV/app/src/main/res/layout/activity_presencia.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/nicol/Desktop/Ingenieria_Informatica/4_CURSO/ProyectoSMOV/app/src/main/res/layout/activity_fichar.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/nicol/Desktop/Ingenieria_Informatica/4_CURSO/ProyectoSMOV/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/nicol/Desktop/Ingenieria_Informatica/4_CURSO/ProyectoSMOV/app/src/main/res/layout/activity_menu.xml" value="0.2921195652173913" />
+        <entry key="..\:/Users/nicol/Desktop/Ingenieria_Informatica/4_CURSO/ProyectoSMOV/app/src/main/res/layout/activity_organigrama.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/nicol/Desktop/Ingenieria_Informatica/4_CURSO/SMOV/app/src/main/res/layout/activity_fichar.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/back.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/drawable/calendar_day_background.xml" value="0.2140625" />
-        <entry key="app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout/activity_agenda.xml" value="0.19427083333333334" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.190625" />
-        <entry key="app/src/main/res/layout/activity_new_companies.xml" value="0.34556159420289856" />
-        <entry key="app/src/main/res/layout/activity_presencia.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/activity_task_of_day.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_task_off_day.xml" value="0.2558876811594203" />
-        <entry key="app/src/main/res/layout/fragment_administator.xml" value="0.190625" />
-        <entry key="app/src/main/res/layout/fragment_company_data.xml" value="0.190625" />
-        <entry key="app/src/main/res/layout/fragment_confirm_register.xml" value="0.190625" />
-        <entry key="app/src/main/res/layout/fragment_main_office.xml" value="0.190625" />
         <entry key="app/src/main/res/layout/fragment_task_off_day.xml" value="0.2558876811594203" />
       </map>
     </option>
@@ -45,8 +40,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="SuppressKotlinCodeStyleNotification">
-    <option name="disableForAll" value="true" />
   </component>
 </project>

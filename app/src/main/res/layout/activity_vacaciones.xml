@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".VacacionesActivity"
     android:orientation="vertical"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondoapp2"
     >
 
     <LinearLayout
@@ -46,6 +46,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
                 android:background="@drawable/back"
+                android:textColor="#0A43AC"
                 android:fontFamily="sans-serif-black"
                 android:text="@string/diasvaca"
                 android:textSize="28sp">
@@ -67,6 +68,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/fechaSal"
+            android:textColor="#0A43AC"
             android:layout_marginLeft="30dp">
         </TextView>
         <LinearLayout
@@ -83,6 +85,7 @@
                 android:background="@drawable/back"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="30dp"
+                android:textColor="#0A43AC"
                 android:textSize="16sp"
                 >
 
@@ -94,11 +97,13 @@
             android:layout_height="wrap_content"
             android:text="@string/fechaReg"
             android:layout_marginTop="10dp"
+            android:textColor="#0A43AC"
             android:layout_marginLeft="30dp">
         </TextView>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textColor="#0A43AC"
             android:orientation="horizontal">
 
             <TextView
