@@ -140,15 +140,15 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="299dp"
-        android:layout_height="93dp"
+        android:layout_width="337dp"
+        android:layout_height="115dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.608"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.031"
+        app:layout_constraintVertical_bias="0.025"
         app:srcCompat="@drawable/organiza2" />
 
     <TextView
