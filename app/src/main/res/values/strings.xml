@@ -59,9 +59,15 @@
 
 
     <string name="CondicionesDeRegistroTitle">Al dar a siguiente aceptará las siguientes condiciones: </string>
-    <string name="CondicionesDeRegistroText">Lorem ipsum dolor sit amet consectetur adipiscing elit, taciti ullamcorper habitant metus quisque nulla, facilisis sociosqu felis dui in integer. Felis lobortis praesent mattis potenti sociosqu fermentum dictumst laoreet penatibus, fames dapibus gravida quisque pulvinar sodales facilisi inceptos, eleifend auctor magnis convallis cubilia pellentesque diam mauris. Platea dapibus arcu per imperdiet ultricies habitasse dui condimentum, non posuere etiam eget tortor quisque class fusce molestie, feugiat phasellus in nostra turpis tempor curabitur.
-
-Eros dignissim eget nostra platea quam tristique massa, venenatis arcu odio cursus metus vitae lobortis, tincidunt lectus phasellus at libero pretium. Sociis interdum metus inceptos sodales venenatis ligula platea, et mollis himenaeos pretium imperdiet conubia posuere, lobortis senectus rhoncus erat semper enim. Auctor dictum lectus ligula nisl mauris semper senectus ultricies blandit, a vel phasellus rhoncus sed facilisi dignissim volutpat sapien neque, aliquam viverra aenean magna tortor iaculis lobortis montes.
+    <string name="AvisoLegalTitle">AVISO LEGAL </string>
+    <string name="AvisoLegalText">
+        "Le informamos de que sus datos personales formarán parte de un fichero titularidad de Organiza2 con la finalidad de gestionar su registro, así como para remitirle información sobre nuestros productos y servicios, tanto por medios postales como electrónicos. \n
+        Mediante el registro en la presente aplicación usted consiente que Organiza2 comunique sus datos a su director/es pertenecientes a su empresa, con el fin de poder realizar una mejor gestión de su negocio. \n
+        Puede ejercer sus derechos de acceso, rectificación, cancelación y oposición, así como revocar el consentimiento prestado para el envío de comunicaciones comerciales electrónicas, enviando un correo electrónico a Organiza2@gmail.com o bien enviando una carta a Organiza2 ."
+    </string>
+    <string name="CondicionesDeUsoTitle">CONDICIONES DE USO</string>
+    <string name="CondicionesDeUsoText">
+    MEDIANTE LA DESCARGA, LA INSTALACIÓN Y/O EL USO DE LA APLICACIÓN EN SU TERMINAL MANIFIESTA EXPRESAMENTE QUE ESTÁ DE ACUERDO, CUMPLE Y ACEPTA NUESTRAS CONDICIONES DE USO Y POLÍTICA DE PRIVACIDAD.
     </string>
 
     <string name="hello_blank_fragment">hello_blank_fragment: </string>

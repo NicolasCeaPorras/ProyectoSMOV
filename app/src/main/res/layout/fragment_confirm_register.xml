@@ -21,14 +21,50 @@
         android:minHeight="48dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/AvisoLegalTitle"
+        android:text="@string/AvisoLegalTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-black"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/CondicionesDeRegistroText"
+        android:id="@+id/AvisoLegalText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/CondicionesDeRegistroText"
+        android:text="Le informamos de que sus datos personales formarán parte de un fichero titularidad de Organiza2 con la finalidad de gestionar su registro, así como para remitirle información sobre nuestros productos y servicios, tanto por medios postales como electrónicos. \n\n
+    Mediante el registro en la presente aplicación usted consiente que Organiza2 comunique sus datos a su director/es pertenecientes a su empresa, con el fin de poder realizar una mejor gestión de su negocio. \n\n
+    Puede ejercer sus derechos de acceso, rectificación, cancelación y oposición, así como revocar el consentimiento prestado para el envío de comunicaciones comerciales electrónicas, enviando un correo electrónico a Organiza2@gmail.com o bien enviando una carta a Organiza2 ."
         android:layout_margin="20dp"
         android:layout_marginTop="40dp"
         android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/CondicionesDeUsoTitle"
+        android:text="@string/CondicionesDeUsoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-black"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/CondicionesDeUsoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/CondicionesDeUsoText"
+        android:layout_margin="20dp"
+        android:layout_marginTop="40dp"
+        android:textAlignment="center"/>
+
 </LinearLayout>
