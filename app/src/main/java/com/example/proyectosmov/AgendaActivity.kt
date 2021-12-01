@@ -1,11 +1,9 @@
 package com.example.proyectosmov
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.*
 import com.example.proyectosmov.dominio.*
 import com.google.firebase.firestore.FirebaseFirestore
@@ -13,7 +11,6 @@ import com.google.firebase.firestore.ktx.toObject
 import java.util.*
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
-import android.widget.TextView
 
 
 class AgendaActivity : AppCompatActivity() {
@@ -28,13 +25,13 @@ class AgendaActivity : AppCompatActivity() {
         supportActionBar!!.hide()
         val bundle = getIntent().getExtras();
         if(bundle!=null && !bundle.isEmpty){
-//            companyId = bundle.getString("companyId").toString();
-//            userEmail = bundle.getString("email").toString();
-            companyId = "7fPPoOKgo9tmPB7YM4ED"
-            userEmail = "pepe@p.com"
+            companyId = bundle.getString("company").toString();
+            userEmail = bundle.getString("email").toString();
+//            companyId = "7fPPoOKgo9tmPB7YM4ED"
+//            userEmail = "pepe@p.com"
         }
-        companyId = "7fPPoOKgo9tmPB7YM4ED"
-        userEmail = "pepe@p.com"
+//        companyId = "7fPPoOKgo9tmPB7YM4ED"
+//        userEmail = "pepe@p.com"
 
 //        //Asignamos el evento de cambio de fecha en el calendario
         val calendarView = findViewById<com.applandeo.materialcalendarview.CalendarView>(R.id.agenCalendario)

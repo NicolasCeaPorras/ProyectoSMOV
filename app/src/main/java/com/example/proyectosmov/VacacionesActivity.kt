@@ -6,12 +6,8 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.CalendarView
 import android.widget.TextView
-import com.example.proyectosmov.R
 import android.widget.Toast
-import java.text.SimpleDateFormat
-import java.time.YearMonth
 import java.util.*
 import android.os.Looper
 import com.applandeo.materialcalendarview.EventDay

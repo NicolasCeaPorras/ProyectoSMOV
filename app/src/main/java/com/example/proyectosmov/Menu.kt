@@ -84,10 +84,10 @@ class Menu : AppCompatActivity() {
         val bundle = this.intent.extras
         val compania = bundle!!.getString("company")
         val email = findViewById<TextView>(R.id.textoEmail).text.toString()
-        val intent = Intent(this@Menu, Organigrama::class.java)
+        val intent = Intent(this@Menu, AgendaActivity::class.java)
         intent.putExtra("email",email)
         intent.putExtra("company",compania)
-        startActivity(Intent(this@Menu, AgendaActivity::class.java))
+        startActivity(intent)
     }
 
     //Evento que al hacer click te cierra la sesion y te redirecciona a la pantalla de Vacaciones
@@ -110,10 +110,10 @@ class Menu : AppCompatActivity() {
     fun clickMiPresencia(v: View?) {
         val bundle = this.intent.extras
         val compania = bundle!!.getString("company")
-        val intent = Intent(this@Menu, PresenciaActivity::class.java)
         val email = findViewById<TextView>(R.id.textoEmail).text.toString()
-        intent.putExtra("companyId",compania)
+        val intent = Intent(this@Menu, PresenciaActivity::class.java)
         intent.putExtra("email",email)
+        intent.putExtra("company",compania)
         startActivity(intent)
     }
 }

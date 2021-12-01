@@ -4,12 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlin.collections.Map
 import android.util.Log
-import android.view.Gravity
 import android.widget.*
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -35,10 +31,10 @@ class PresenciaActivity : AppCompatActivity() {
         supportActionBar!!.hide()
         val bundle = getIntent().getExtras();
         if(bundle!=null && !bundle.isEmpty){
-//            companyId = bundle.getString("companyId").toString();
-//            userEmail = bundle.getString("email").toString();
-            companyId = "7fPPoOKgo9tmPB7YM4ED"
-            userEmail = "pepe@p.com"
+            companyId = bundle.getString("company").toString();
+            userEmail = bundle.getString("email").toString();
+//            companyId = "7fPPoOKgo9tmPB7YM4ED"
+//            userEmail = "pepe@p.com"
         }
 
         //Dar valor a los selectores de mes y año
