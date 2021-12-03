@@ -11,7 +11,7 @@
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="horaentrada">Hora de entrada:</string>
     <string name="gestionUsuario">Gestión de usuarios</string>
-    <string name="miPresencia">Times it</string>
+    <string name="miPresencia">Timesheet</string>
     <string name="anadirUsuario">Añadir usuario</string>
     <string name="compania">Compañia: </string>
     <string name="eliminarUsuario">Eliminar usuario</string>

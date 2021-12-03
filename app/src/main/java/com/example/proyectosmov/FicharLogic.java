@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.proyectosmov.dominio.ActiveInput;
 import com.example.proyectosmov.dominio.Company;
 import com.example.proyectosmov.dominio.TimeRecord;
 import com.example.proyectosmov.dominio.User;
@@ -55,9 +56,10 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
     private Timestamp ficharEntrada, ficharSalida;
     private String btnString;
     private Bundle bundle;
+    private Date dateEntrada,dateCreacion;
     MyVectorClock vectorAnalogClock;
     Spinner sLista;
-    Date hora;
+    private Date hora;
     private FirebaseFirestore mDatabase;
     //Cambios para la nueva BD
     //Referencia usada para comprender el hilo: https://stackoverflow.com/questions/6400846/updating-time-and-date-by-the-second-in-android
@@ -121,7 +123,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                 //.setDiameterInDp(150)
                 .setOpacity(1.0f)
                 .setShowSeconds(true)
-                .setColor(Color.BLACK);
+                .setColor(Color.parseColor("#0A43AC"));
 
 
         //Actualizar Spinner
@@ -147,42 +149,52 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
         });
         //Comprobar si existe entradaFichar y salidaFichar en la BD anteriormente.
         //TO DO (HAY QUE USAR LA NUEVA BD)
-        /*
-        mDatabase.collection("usuarios").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        ficharEntrada= (Timestamp) document.get("entradaFichar");
-                        ficharSalida = (Timestamp) document.get("salidaFichar");
-                        SimpleDateFormat formato= new SimpleDateFormat("HH:mm:ss");
-                        Date hE= ficharEntrada.toDate();
-                        String entradaFormato = formato.format(hE);
-                        Date hS= ficharSalida.toDate();
-                        String salidaFormato = formato.format(hS);
-                        btnString = (String) document.get("btnFichar");
-                        Log.d(TAG, "Boton es: " + document.get("btnFichar"));
-                        if(btnString != null) {
-                            entrada.setText(btnString);
-                            if(btnString.equals("Entrada")) {
-                                hEntrada.setText(entradaFormato);
-                                hSalida.setText(salidaFormato);
-                            } else {
-                                hEntrada.setText(entradaFormato);
-                            }
-                        }
-                        Log.d(TAG, "Fichar entrada es: " + document.get("entradaFichar"));
-                        Log.d(TAG, "Fichar salida es: " + document.get("salidaFichar"));
-                    } else {
-                        Log.d(TAG, "No se encuentra el valor.");
-                    }
-                } else {
-                    Log.d(TAG, "fallo con ", task.getException());
-                }
-            }
-        }); */
+        DocumentReference docRef = mDatabase.collection("companies").document(company);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                              @Override
+                                              public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                  Company comp = documentSnapshot.toObject(Company.class);
+                                                  if (comp != null) {
+                                                      Log.i("FicharLog", "Dentro del object Company Entrada");
+                                                      User user = getUserByEmail(comp, email);
+                                                      if (user != null) {
+                                                          if (user.getActive_input() == null) {
+                                                              Log.i(TAG, "No hay activeInput guardado, botón a Entrada...");
+                                                              List<TimeRecord> lista = new ArrayList<>();
+                                                              hEntrada.setText(null);
+                                                              hSalida.setText(null);
+                                                              entrada.setText("Entrada");
+                                                          } else {
+                                                              Log.i(TAG, "Existe un activeInput, boton a Salida...");
+                                                              //Damos formato a la hora
+                                                              Date inHour = user.getActive_input().getStart_hour();
+                                                              String inTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(inHour);
+                                                              //Cambiamos la vista
+                                                              hEntrada.setText(inTime);
+                                                              hSalida.setText(null);
+                                                              entrada.setText("Salida");
+                                                              //Guardamos el valor de la hora de entrada y la fecha de creación
+                                                              dateEntrada = user.getActive_input().getStart_hour();
+                                                              dateCreacion = user.getActive_input().getCreation_date();
+                                                          }
+                                                          mDatabase.collection("companies").document(company).update("users", comp.getUsers()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                              @Override
+                                                              public void onSuccess(Void aVoid) {
+                                                                  Log.d(TAG, "Actualización de usuario sin problemas!");
+                                                              }
+                                                          })
+                                                                  .addOnFailureListener(new OnFailureListener() {
+                                                                      @Override
+                                                                      public void onFailure(@NonNull Exception e) {
+                                                                          Log.w(TAG, "Fallo al actualizar usuario", e);
+                                                                      }
+                                                          });
+                                                      }
+                                                  }
+                                              }
+                                          });
     }
+
 
     private void actualizarHora() {
         activo = true;
@@ -224,6 +236,10 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                         User user = getUserByEmail(comp,email);
                         if(user!=null){
                             TimeRecord tiempoFichar = new TimeRecord();
+                            //Recuperamos los valores del activeInput Anterior
+                            tiempoFichar.setStart_hour(dateEntrada);
+                            tiempoFichar.setCreation_date(dateCreacion);
+                            //Ponemos la nueva fecha de salida.
                             tiempoFichar.setEnd_hour(hora);
 
                             if (user.getTime_records() == null){
@@ -231,9 +247,12 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                                 List<TimeRecord> lista = new ArrayList<>();
                                 user.setTime_records(lista);
                                 user.getTime_records().add(tiempoFichar);
-                            }else {
-                                Log.i(TAG, "Ya hay lista, metiendo nuevos datos...");
+                                //Borramos el ative input actual
+                                user.setActive_input(null);
+                            }else{
                                 user.getTime_records().add(tiempoFichar);
+                                //Borramos el ative input actual
+                                user.setActive_input(null);
                             }
                             mDatabase.collection("companies").document(company).update("users",comp.getUsers()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -261,36 +280,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                     }
                 }
             });
-
-            /*
-            //CODIGO DE LA ANTIGUA BD
-            mDatabase.collection("usuarios").document(email).set(horaSalida, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "DocumentSnapshot successfully written!");
-                }
-            })          //Comprobación de Google FireStore para saber si hemos escrito correctamente.
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error writing document", e);
-                        }
-                    });
-            mDatabase.collection("usuarios").document(email).set(stringBtnFichar, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "DocumentSnapshot successfully written!");
-                }
-            })          //Comprobación de Google FireStore para saber si hemos escrito correctamente.
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error writing document", e);
-                        }
-                    });
-
-*/
-        }
+     }
         else if ( entrada.getText().toString().equals("Entrada")) {
             Log.d( TAG,"onClicked: "+entrada.getText().toString());
             hora = Calendar.getInstance().getTime();
@@ -303,33 +293,6 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             Map<String, Object> horaEntrada = new HashMap<>();
             ficharEntrada = Timestamp.now();
             horaEntrada.put("entradaFichar",ficharEntrada);
-            /*
-            mDatabase.collection("usuarios").document(email).set(horaEntrada, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "DocumentSnapshot successfully written!");
-                }
-            })      //Comprobación de Google FireStore para saber si hemos escrito correctamente.
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error writing document", e);
-                        }
-                    });
-            mDatabase.collection("usuarios").document(email).set(stringBtnFichar, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "DocumentSnapshot successfully written!");
-                }
-            })          //Comprobación de Google FireStore para saber si hemos escrito correctamente.
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error writing document", e);
-                        }
-                    });
-
-             */
 
             DocumentReference docRef = mDatabase.collection("companies").document(company);
             docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -340,18 +303,20 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                          Log.i("FicharLog", "Dentro del object Company Entrada");
                          User user = getUserByEmail(comp,email);
                          if(user!=null){
-                             TimeRecord tiempoFichar = new TimeRecord();
-                             tiempoFichar.setStart_hour(hora);
-                             tiempoFichar.setCreation_date( new Date());
-
-                             if (user.getTime_records() == null){
-                                 Log.i(TAG, "No existe lista, creando...");
-                                 List<TimeRecord> lista = new ArrayList<>();
-                                 user.setTime_records(lista);
-                                 user.getTime_records().add(tiempoFichar);
-                             }else {
-                                 Log.i(TAG, "Ya hay lista, metiendo nuevos datos...");
-                                 user.getTime_records().add(tiempoFichar);
+                             ActiveInput ai = new ActiveInput();
+                             ai.setStart_hour(hora);
+                             ai.setCreation_date(new Date());
+                             //Asignamos los valores a las variables de entrada por si el usuario
+                             //decide dar de seguido al boton de salida una vez ha dado al de entrada
+                             //cosa que no es muy útil, pero por si acaso.
+                             dateEntrada = ai.getStart_hour();
+                             dateCreacion = ai.getCreation_date();
+                             if (user.getActive_input() == null) {
+                                 Log.i(TAG, "No existe activeInput, creando...");
+                                 //List<TimeRecord> lista = new ArrayList<>();
+                                 //user.setTime_records(lista);
+                                 //user.getTime_records().add(tiempoFichar);
+                                 user.setActive_input(ai);
                              }
                              mDatabase.collection("companies").document(company).update("users", comp.getUsers()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                  @Override
@@ -366,6 +331,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                                          }
                                      });
                              /*
+                             HASH NO FUNCIONAL
                              String oficina = sLista.getSelectedItem().toString();
                              MessageDigest md = null;
                              try {
@@ -381,18 +347,5 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             });
         }
     }
-/*  Spaguetti Code
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("btnString",entrada.getText().toString());
-    }
-    @Override
-    public void onRestoreInstanceState(Bundle estadoGuardado) {
-        super.onRestoreInstanceState(estadoGuardado);
-        //Recuperamos el estado del boton
-            btnString = estadoGuardado.getString("btnString");
-    }
-    */
 
 }
