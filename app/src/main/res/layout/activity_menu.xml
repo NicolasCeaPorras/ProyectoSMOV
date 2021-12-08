@@ -221,7 +221,7 @@
 
         <ImageView
             android:id="@+id/miPresencia"
-            android:layout_width="89dp"
+            android:layout_width="61dp"
             android:layout_height="25pt"
             android:layout_marginTop="3pt"
             android:layout_marginBottom="3pt"

@@ -15,29 +15,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         tools:context=".GestionUsuarios">
-
         <TextView
             android:layout_width="174dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="@string/nombreUsuario"
+            android:text="@string/accion"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:textSize="8pt"></TextView>
-
-        <EditText
-            android:id="@+id/usuario"
+        <Spinner
+            android:id="@+id/accion"
             android:layout_width="230dp"
+            android:layout_height="14pt"
             android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3pt"></EditText>
-
+            android:layout_marginLeft="3pt">
+        </Spinner>
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_marginTop="5pt"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="3pt"
         tools:context=".GestionUsuarios">
         <TextView
             android:layout_width="174dp"
@@ -48,7 +46,6 @@
             android:textAlignment="center"
             android:textColor="@color/black">
         </TextView>
-
         <EditText
             android:id="@+id/correo"
             android:layout_width="230dp"
@@ -60,76 +57,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="5pt"
-        tools:context=".GestionUsuarios">
-        <TextView
-            android:layout_width="174dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:text="@string/nombre"
-            android:textSize="8pt"
-            android:textColor="@color/black">
-        </TextView>
-
-        <EditText
-            android:id="@+id/nombre"
-            android:layout_width="230dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3pt"></EditText>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5pt"
-        tools:context=".GestionUsuarios">
-        <TextView
-            android:layout_width="174dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:text="@string/telefono"
-            android:textSize="8pt"
-            android:textColor="@color/black">
-        </TextView>
-
-        <EditText
-            android:id="@+id/telefono"
-            android:layout_width="230dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3pt"></EditText>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5pt"
-        tools:context=".GestionUsuarios">
-        <TextView
-            android:layout_width="174dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:text="@string/jefe"
-            android:textSize="8pt"
-            android:textColor="@color/black">
-        </TextView>
-
-        <EditText
-            android:id="@+id/jefe"
-            android:layout_width="230dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3pt"></EditText>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5pt"
+        android:layout_marginBottom="3pt"
         tools:context=".GestionUsuarios">
         <TextView
             android:layout_width="174dp"
@@ -148,63 +76,199 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="3pt"></EditText>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5pt"
-        android:orientation="horizontal"
-        tools:context=".GestionUsuarios">
-        <TextView
-            android:layout_width="174dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:text="@string/contrasena"
-            android:textSize="8pt"
-            android:textColor="@color/black">
-        </TextView>
-
-        <EditText
-            android:id="@+id/contrasena"
-            android:layout_width="230dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_marginLeft="3pt"></EditText>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5pt"
-        android:orientation="horizontal"
-        tools:context=".GestionUsuarios">
-        <TextView
-            android:layout_width="174dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:text="@string/administrador"
-            android:textSize="8pt"
-            android:textColor="@color/black">
-        </TextView>
-
-        <Spinner
-            android:id="@+id/administrador"
-            android:layout_width="230dp"
-            android:layout_height="14pt"
-            android:layout_gravity="center"
-            android:layout_marginLeft="3pt">
-
-        </Spinner>
-    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10pt"
-        android:text="@string/anadirUsuario"
-        android:onClick="onClickAnadir"
-        android:backgroundTint="#2196F3"></Button>
+        android:layout_marginTop="2pt"
+        android:layout_marginBottom="2pt"
+        android:text="@string/comprobar"
+        tools:context=".GestionUsuarios"
+        android:onClick="clickComprobar"
+        android:backgroundTint="#2196F3" />
 
+    <LinearLayout
+        android:id="@+id/datosUsuario"
+        android:layout_width="fill_parent"
+        android:visibility="invisible"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".GestionUsuarios">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:context=".GestionUsuarios">
+
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@string/nombreUsuario"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:textSize="8pt"></TextView>
+
+            <EditText
+                android:id="@+id/usuario"
+                android:layout_width="230dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3pt"></EditText>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5pt"
+            tools:context=".GestionUsuarios">
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@string/nombre"
+                android:textSize="8pt"
+                android:textColor="@color/black">
+            </TextView>
+
+            <EditText
+                android:id="@+id/nombre"
+                android:layout_width="230dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3pt"></EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5pt"
+            tools:context=".GestionUsuarios">
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@string/telefono"
+                android:textSize="8pt"
+                android:textColor="@color/black">
+            </TextView>
+
+            <EditText
+                android:id="@+id/telefono"
+                android:layout_width="230dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3pt"></EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5pt"
+            tools:context=".GestionUsuarios">
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@string/jefe"
+                android:textSize="8pt"
+                android:textColor="@color/black">
+            </TextView>
+
+            <EditText
+                android:id="@+id/jefe"
+                android:layout_width="230dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3pt"></EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5pt"
+            tools:context=".GestionUsuarios">
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@string/diasVacaciones"
+                android:textSize="8pt"
+                android:textColor="@color/black">
+            </TextView>
+
+            <EditText
+                android:id="@+id/vacaciones"
+                android:layout_width="230dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3pt"></EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5pt"
+            android:orientation="horizontal"
+            tools:context=".GestionUsuarios">
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@string/contrasena"
+                android:textSize="8pt"
+                android:textColor="@color/black">
+            </TextView>
+
+            <EditText
+                android:id="@+id/contrasena"
+                android:layout_width="230dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:layout_marginLeft="3pt"></EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5pt"
+            android:orientation="horizontal"
+            tools:context=".GestionUsuarios">
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@string/administrador"
+                android:textSize="8pt"
+                android:textColor="@color/black">
+            </TextView>
+
+            <Spinner
+                android:id="@+id/administrador"
+                android:layout_width="230dp"
+                android:layout_height="14pt"
+                android:layout_gravity="center"
+                android:layout_marginLeft="3pt">
+
+            </Spinner>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/botonAccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10pt"
+            android:text="@string/anadirUsuario"
+            android:onClick="onClickAnadir"
+            android:backgroundTint="#2196F3"></Button>
+    </LinearLayout>
 </LinearLayout>
