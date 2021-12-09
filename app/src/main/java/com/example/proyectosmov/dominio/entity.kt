@@ -3,6 +3,7 @@ package com.example.proyectosmov.dominio
 import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 //Data clases que representan el dominio para las consultas
 
@@ -70,6 +71,16 @@ fun getUserCount(comp : Company): Int{
         contador++;
     }
     return contador
+}
+
+//Devuelve la lista de listas de Oficinas
+fun getListOffice(comp : Company): ArrayList<String> {
+    val arr : ArrayList<String>
+    arr = ArrayList();
+    for (office in comp.offices!!){
+        office.name?.let { arr.add(it) }
+    }
+    return arr
 }
 
 //Devuelve un usuario dependiendo de su ID

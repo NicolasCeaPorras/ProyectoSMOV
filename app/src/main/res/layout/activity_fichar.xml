@@ -36,6 +36,7 @@
         android:background="@drawable/back"
         android:layout_width="200dp"
         android:layout_height="40dp"
+        android:spinnerMode="dropdown"
         android:text="@string/selOfic">
     </Spinner>
 </LinearLayout>

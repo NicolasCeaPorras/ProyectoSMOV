@@ -1,6 +1,9 @@
 package com.example.proyectosmov;
 
+import static com.example.proyectosmov.dominio.EntityKt.getListOffice;
 import static com.example.proyectosmov.dominio.EntityKt.getUserByEmail;
+
+import static java.security.AccessController.getContext;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.proyectosmov.dominio.ActiveInput;
 import com.example.proyectosmov.dominio.Company;
+import com.example.proyectosmov.dominio.Office;
 import com.example.proyectosmov.dominio.TimeRecord;
 import com.example.proyectosmov.dominio.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -61,6 +65,9 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
     Spinner sLista;
     private Date hora;
     private FirebaseFirestore mDatabase;
+    private ArrayList<String> arrayList = new ArrayList<>();
+    private ArrayAdapter<String> arrayAdapter;
+
     //Cambios para la nueva BD
     //Referencia usada para comprender el hilo: https://stackoverflow.com/questions/6400846/updating-time-and-date-by-the-second-in-android
     private final Runnable mRunnable = new Runnable() {
@@ -90,18 +97,18 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
         getSupportActionBar().hide();
         mDatabase = FirebaseFirestore.getInstance();
         bundle = getIntent().getExtras();
-        if(bundle!=null){
-            Log.d(TAG,"Bundle no es nulo");
+        if (bundle != null) {
+            Log.d(TAG, "Bundle no es nulo");
             //Debug para testear la BD
-            if(bundle.isEmpty()==true){
-                Log.d(TAG,"Bundle esta vacio");
+            if (bundle.isEmpty() == true) {
+                Log.d(TAG, "Bundle esta vacio");
             }
             email = bundle.getString("email");
             //email = "a@a.com";
             company = bundle.getString("company");
         }
         //email = "a@a.com";
-        Log.d(TAG,"El valor de email es:"+email);
+        Log.d(TAG, "El valor de email es:" + email);
 
 
         // Enlazar views
@@ -114,7 +121,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
         // Reloj parte automatico
         // //Referencia: De donde viene el codigo: https://github.com/TurkiTAK/vector-analog-clock
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.HOUR,0);
+        calendar.add(Calendar.HOUR, 0);
 
         vectorAnalogClock = findViewById(R.id.clock);
 
@@ -127,14 +134,33 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
 
 
         //Actualizar Spinner
-        sLista= findViewById(R.id.selOficina);
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("Oficina 1");
-        arrayList.add("Oficina 2");
-        arrayList.add("Teletrabajo");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sLista.setAdapter(arrayAdapter);
+        sLista = findViewById(R.id.selOficina);
+
+
+        DocumentReference docRef = mDatabase.collection("companies").document(company);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Company comp = documentSnapshot.toObject(Company.class);
+                if (comp != null) {
+                    Log.i("FicharLog", "Dentro del object Company Entrada");
+                    arrayList = getListOffice(comp);
+                    Log.w(TAG, "Actualizada listas de oficinas: "+arrayList.get(0));
+                    arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
+                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    sLista.setAdapter(arrayAdapter);
+                }
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Fallo al actualizar usuario", e);
+                    }
+                });
+
+
+
         sLista.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -148,8 +174,8 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             }
         });
         //Comprobar si existe entradaFichar y salidaFichar en la BD anteriormente.
-        //TO DO (HAY QUE USAR LA NUEVA BD)
-        DocumentReference docRef = mDatabase.collection("companies").document(company);
+        //TESTEADO Y FUNCIONAL
+        docRef = mDatabase.collection("companies").document(company);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                               @Override
                                               public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -164,6 +190,8 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                                                               hEntrada.setText(null);
                                                               hSalida.setText(null);
                                                               entrada.setText("Entrada");
+                                                              //arrayAdapter.notifyDataSetChanged();
+
                                                           } else {
                                                               Log.i(TAG, "Existe un activeInput, boton a Salida...");
                                                               //Damos formato a la hora
@@ -193,6 +221,8 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                                                   }
                                               }
                                           });
+
+
     }
 
 
