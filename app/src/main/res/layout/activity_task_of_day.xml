@@ -8,6 +8,8 @@
     tools:context=".TaskOfDayActivity"
     android:orientation="vertical"
     android:background="@drawable/fondoapp"
+    android:forceDarkAllowed="false"
+
     >
 
     <TextView

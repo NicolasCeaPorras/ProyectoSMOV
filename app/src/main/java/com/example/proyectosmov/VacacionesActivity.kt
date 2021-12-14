@@ -47,7 +47,9 @@ class VacacionesActivity : AppCompatActivity() {
         val fechaSalView = findViewById<TextView>(R.id.fechSal)
         val fechaRegView = findViewById<TextView>(R.id.fechReg)
         val diasDispView = findViewById<TextView>(R.id.diasVaca)
+        val boton = findViewById<Button>(R.id.buttonVacaciones)
 
+        boton.visibility =View.INVISIBLE
         //desactivamos el calendario al inicio
         calendarView.setVisibility(View.INVISIBLE)
         //Ponemos los dias disponibles por defecto
@@ -102,13 +104,16 @@ class VacacionesActivity : AppCompatActivity() {
         val calendarView = findViewById<com.applandeo.materialcalendarview.CalendarView>(R.id.vacaCalendario)
         calendarView.setVisibility(View.VISIBLE)
         Click=1
-
+        val boton = findViewById<Button>(R.id.buttonVacaciones)
+        boton.visibility =View.VISIBLE
     }
 
     fun clickFechaReg(v: View?) {
         val calendarView = findViewById<com.applandeo.materialcalendarview.CalendarView>(R.id.vacaCalendario)
         calendarView.setVisibility(View.VISIBLE)
         Click=0
+        val boton = findViewById<Button>(R.id.buttonVacaciones)
+        boton.visibility =View.VISIBLE
     }
 
     fun onClickGuardar(view: android.view.View) {

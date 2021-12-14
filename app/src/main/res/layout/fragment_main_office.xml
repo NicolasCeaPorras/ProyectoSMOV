@@ -8,7 +8,9 @@
     android:background="@drawable/fondoapp3"
     android:orientation="vertical"
     android:paddingTop="40dp"
-    tools:context=".fragmentos.MainOfficeFragment">
+    tools:context=".fragmentos.MainOfficeFragment"
+    android:forceDarkAllowed="false"
+    >
 
         <TextView
             android:id="@+id/CompanyTitle"

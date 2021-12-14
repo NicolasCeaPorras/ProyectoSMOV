@@ -8,6 +8,7 @@
     tools:context=".AgendaActivity"
     android:orientation="vertical"
     android:background="@drawable/fondoapp2"
+    android:forceDarkAllowed="false"
     >
 
     <TextView

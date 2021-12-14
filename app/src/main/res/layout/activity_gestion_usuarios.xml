@@ -7,7 +7,9 @@
     android:layout_height="fill_parent"
     android:background="@drawable/fondologin"
     android:orientation="vertical"
-    tools:context=".GestionUsuarios">
+    tools:context=".GestionUsuarios"
+    android:forceDarkAllowed="false"
+    >
 
     <LinearLayout
         android:layout_marginTop="6pt"

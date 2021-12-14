@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondotimesheet"
     android:orientation="vertical"
-    tools:context=".PresenciaActivity">
+    tools:context=".PresenciaActivity"
+    android:forceDarkAllowed="false"
+    >
 
 
     <LinearLayout
