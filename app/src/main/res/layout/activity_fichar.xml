@@ -20,6 +20,7 @@
         android:onClick="onClick"
         android:layout_width="115dp"
         android:layout_height="79dp"
+        android:backgroundTint="#0A43AC"
         android:text="@string/entrada" />
 
 </LinearLayout>
