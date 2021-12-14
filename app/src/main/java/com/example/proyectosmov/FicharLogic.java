@@ -130,7 +130,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                 //.setDiameterInDp(150)
                 .setOpacity(1.0f)
                 .setShowSeconds(true)
-                .setColor(Color.parseColor("#0A43AC"));
+                .setColor(Color.BLACK);
 
 
         //Actualizar Spinner

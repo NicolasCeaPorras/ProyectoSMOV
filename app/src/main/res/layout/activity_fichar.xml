@@ -106,7 +106,8 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                app:srcCompat="@android:drawable/presence_invisible"></ImageView>
+                android:layout_marginLeft="4pt"
+                app:srcCompat="@drawable/icono_entrar"></ImageView>
 
                 <TextView
                     android:text="@string/horaentrada"
@@ -143,7 +144,8 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                app:srcCompat="?attr/homeAsUpIndicator"></ImageView>
+                android:layout_marginLeft="4pt"
+                app:srcCompat="@drawable/icono_salir"></ImageView>
 
             <TextView
                 android:text="@string/horasalida"
