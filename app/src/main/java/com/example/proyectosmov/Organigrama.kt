@@ -22,6 +22,8 @@ class Organigrama : AppCompatActivity() {
     fun logicaOrganigrama(){
         val organizationChart= OrganizationChart.getInstance(this)
         val webView = findViewById<WebView>(R.id.organigrama_webview)
+        webView.setBackgroundResource(R.drawable.fondologin);
+        webView.setBackgroundColor(0x00000000);
         webView.clearCache(true)
         val bundle = this.intent.extras
         val compania = bundle!!.getString("company")
