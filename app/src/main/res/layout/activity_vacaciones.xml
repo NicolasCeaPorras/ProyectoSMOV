@@ -38,13 +38,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="3dp">
+            android:layout_marginLeft="10dp">
 
             <TextView
                 android:layout_width="270dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="19dp"
+                android:paddingLeft="3pt"
                 android:background="@drawable/back"
                 android:textColor="#0A43AC"
                 android:fontFamily="sans-serif-black"
@@ -55,8 +56,8 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="7.5dp"
-                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="7dp"
                 android:fontFamily="sans-serif-black"
                 android:id="@+id/diasVaca"
                 android:textColor="#0A43AC"
@@ -133,6 +134,7 @@
             android:id="@+id/buttonVacaciones"
             android:onClick="onClickGuardar"
             android:layout_width="115dp"
+            android:backgroundTint="#2196F3"
             android:layout_height="79dp"
             android:text="@string/guardar" />
 
