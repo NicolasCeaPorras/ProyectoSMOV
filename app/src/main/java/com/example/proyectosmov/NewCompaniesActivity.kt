@@ -80,6 +80,7 @@ class NewCompaniesActivity : progressMobileStepper() {
             this.userAmin!!.email = email
             this.userAmin!!.password = hashPassword
             this.userAmin!!.phone_number = phone_number
+            this.userAmin!!.diasVac = 21
             this.company!!.users!![0] = this.userAmin!!
         }
 

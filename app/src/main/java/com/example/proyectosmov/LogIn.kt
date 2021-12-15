@@ -39,6 +39,7 @@ class LogIn : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.passwordUsuario)
         val error = findViewById<TextView>(R.id.errorLogin)
         val carga = findViewById<pl.droidsonroids.gif.GifImageView>(R.id.gifCarga)
+        val botonNuevaCompania = findViewById<TextView>(R.id.nuevaCompania)
 
         // Cuando se pulsa el boton Acceder se valida el usuario en firebase
         botonAcceder.setOnClickListener {
@@ -185,6 +186,9 @@ class LogIn : AppCompatActivity() {
 //                    }
             }
         }
+        botonNuevaCompania.setOnClickListener{
+            showNuevaCompania()
+        }
     }
 
     private fun showMenu(email: String, companyId: String){
@@ -199,5 +203,11 @@ class LogIn : AppCompatActivity() {
         botonAcceder.isClickable = true
         botonAcceder.visibility = View.VISIBLE
         carga.visibility = View.INVISIBLE
+    }
+
+    private fun showNuevaCompania(){
+        val companyIntent = Intent(this, NewCompaniesActivity::class.java).apply{
+        }
+        startActivity(companyIntent)
     }
 }
