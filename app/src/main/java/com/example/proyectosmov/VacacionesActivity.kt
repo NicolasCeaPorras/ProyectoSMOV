@@ -119,7 +119,7 @@ class VacacionesActivity : AppCompatActivity() {
     fun onClickGuardar(view: android.view.View) {
         val diasDispView = findViewById<TextView>(R.id.diasVaca)
         var intervalo = 0
-        Toast.makeText(this, "¡Fechas Guardadas!", Toast.LENGTH_SHORT).show()
+
         val boton = findViewById<Button>(R.id.buttonVacaciones)
 
         var cal1: Calendar = Calendar.getInstance()
@@ -139,6 +139,7 @@ class VacacionesActivity : AppCompatActivity() {
                 Toast.makeText(this, "¡Error, has escogido demasiados dias!", Toast.LENGTH_SHORT)
                     .show()
             } else {
+                Toast.makeText(this, "¡Fechas Guardadas!", Toast.LENGTH_SHORT).show()
                 diasDisp =
                     (diasDisp - ((cal2.get(Calendar.DAY_OF_YEAR)) - (cal1.get(Calendar.DAY_OF_YEAR))))
 

@@ -106,7 +106,7 @@ class NewCompaniesActivity : progressMobileStepper() {
     private fun showMenu(email: String, companyId : String){
         val menuIntent = Intent(this, Menu::class.java).apply{
             putExtra("email", email)
-            putExtra("companyId", companyId)
+            putExtra("company", companyId)
         }
         startActivity(menuIntent)
         finish()
