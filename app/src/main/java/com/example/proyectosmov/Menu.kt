@@ -104,7 +104,12 @@ class Menu : AppCompatActivity() {
     //Evento que al hacer click te lleva a la pantalla de gestion de usuarios
     //Unicamente accesible si el usuario que ha iniciado sesion es administrador
     fun clickGestionUsuarios(v: View?){
-        startActivity(Intent(this@Menu,GestionUsuarios::class.java))
+        val bundle = this.intent.extras
+        val compania = bundle!!.getString("company")
+        val intent = Intent(this@Menu,GestionUsuarios::class.java)
+        intent.putExtra("company",compania)
+        startActivity(intent)
+
     }
     //Evento que al hacer click te lleva a la pantalla de mi presencia
     fun clickMiPresencia(v: View?) {

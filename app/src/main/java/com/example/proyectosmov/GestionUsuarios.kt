@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.*
 import com.google.firebase.firestore.FirebaseFirestore
 import androidx.appcompat.app.AlertDialog
-import com.google.firebase.auth.FirebaseAuth
 import com.example.proyectosmov.dominio.*
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.SetOptions
@@ -54,10 +53,15 @@ class GestionUsuarios : AppCompatActivity() {
     fun clickComprobar(v: View) {
         val accion = findViewById<View>(R.id.accion) as Spinner
         val db = FirebaseFirestore.getInstance()
-        val compania = findViewById<View>(R.id.compania) as EditText
+        val bundle = getIntent().getExtras();
+        var compania = ""
+        if (bundle != null && !bundle.isEmpty)
+            compania = bundle.getString("company").toString()
+
+
         val email = findViewById<View>(R.id.correo) as EditText
         val datosUsuario = findViewById<LinearLayout>(R.id.datosUsuario)
-        if (email.text.toString() == "" || compania.text.toString() == "" ){
+        if (email.text.toString() == "" || compania == "" ){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Error")
             builder.setMessage("Introduce una compañia y un usuario, por favor")
@@ -67,54 +71,54 @@ class GestionUsuarios : AppCompatActivity() {
             dialog.show()
         }
         else if (accion.selectedItem.toString() == "Añadir usuario") {
-                db.collection("companies").document(compania.text.toString()).get()
-                    .addOnSuccessListener { documentSnapshot ->
-                        val company = documentSnapshot.toObject<Company>()
-                        if (company == null) {
+            db.collection("companies").document(compania).get()
+                .addOnSuccessListener { documentSnapshot ->
+                    val company = documentSnapshot.toObject<Company>()
+                    if (company == null) {
+                        val builder = AlertDialog.Builder(this)
+                        builder.setTitle("Error")
+                        builder.setMessage("No existe esa compañía")
+                        builder.setPositiveButton("Aceptar", null)
+
+                        val dialog = builder.create()
+                        dialog.show()
+                    } else {
+                        val usuario = getUserByEmail(company, email.text.toString())
+                        if (usuario != null) {
                             val builder = AlertDialog.Builder(this)
                             builder.setTitle("Error")
-                            builder.setMessage("No existe esa compañía")
+                            builder.setMessage("Ya existe un usuario con ese email")
                             builder.setPositiveButton("Aceptar", null)
 
                             val dialog = builder.create()
                             dialog.show()
                         } else {
-                            val usuario = getUserByEmail(company, email.text.toString())
-                            if (usuario != null) {
-                                val builder = AlertDialog.Builder(this)
-                                builder.setTitle("Error")
-                                builder.setMessage("Ya existe un usuario con ese email")
-                                builder.setPositiveButton("Aceptar", null)
+                            val nUsuario = findViewById<View>(R.id.usuario) as EditText
+                            val nombre = findViewById<View>(R.id.nombre) as EditText
+                            val vacaciones = findViewById<View>(R.id.vacaciones) as EditText
+                            val telefono = findViewById<View>(R.id.telefono) as EditText
+                            val jefe = findViewById<View>(R.id.jefe) as EditText
+                            val contrasena = findViewById<View>(R.id.contrasena) as EditText
+                            val administrador = findViewById<View>(R.id.administrador) as Spinner
 
-                                val dialog = builder.create()
-                                dialog.show()
-                            } else {
-                                val nUsuario = findViewById<View>(R.id.usuario) as EditText
-                                val nombre = findViewById<View>(R.id.nombre) as EditText
-                                val vacaciones = findViewById<View>(R.id.vacaciones) as EditText
-                                val telefono = findViewById<View>(R.id.telefono) as EditText
-                                val jefe = findViewById<View>(R.id.jefe) as EditText
-                                val contrasena = findViewById<View>(R.id.contrasena) as EditText
-                                val administrador = findViewById<View>(R.id.administrador) as Spinner
+                            nUsuario.setText("")
+                            nombre.setText("")
+                            vacaciones.setText("")
+                            telefono.setText("")
+                            jefe.setText("")
+                            contrasena.setText("")
+                            administrador.setSelection(1)
 
-                                nUsuario.setText("")
-                                nombre.setText("")
-                                vacaciones.setText("")
-                                telefono.setText("")
-                                jefe.setText("")
-                                contrasena.setText("")
-                                administrador.setSelection(1)
-
-                                datosUsuario.visibility = View.VISIBLE
-                                val botonAccion = findViewById<View>(R.id.botonAccion) as Button
-                                botonAccion.text = accion.selectedItem.toString()
-                                botonAccion.setOnClickListener { onClickAnadir(v) }
-                            }
+                            datosUsuario.visibility = View.VISIBLE
+                            val botonAccion = findViewById<View>(R.id.botonAccion) as Button
+                            botonAccion.text = accion.selectedItem.toString()
+                            botonAccion.setOnClickListener { onClickAnadir(v) }
                         }
                     }
-            }
+                }
+        }
         else if (accion.selectedItem.toString() == "Editar usuario") {
-            db.collection("companies").document(compania.text.toString()).get()
+            db.collection("companies").document(compania).get()
                 .addOnSuccessListener { documentSnapshot ->
                     val company = documentSnapshot.toObject<Company>()
                     if (company == null) {
@@ -174,8 +178,11 @@ class GestionUsuarios : AppCompatActivity() {
         val nombre = findViewById<View>(R.id.nombre) as EditText
         val vacaciones = findViewById<View>(R.id.vacaciones) as EditText
         val telefono = findViewById<View>(R.id.telefono) as EditText
+        val bundle = getIntent().getExtras();
+        var compania = ""
+        if (bundle != null && !bundle.isEmpty)
+            compania = bundle.getString("company").toString()
         val jefe = findViewById<View>(R.id.jefe) as EditText
-        val compania = findViewById<View>(R.id.compania) as EditText
         val contrasena = findViewById<View>(R.id.contrasena) as EditText
         val administrador = findViewById<View>(R.id.administrador) as Spinner
         val esAdministrador = administrador.selectedItem.toString().equals("Sí")
@@ -194,7 +201,7 @@ class GestionUsuarios : AppCompatActivity() {
             Integer.parseInt(vacaciones.text.toString())
         )
         //Añado el usuario a la base de datos y tambien lo añado a la autentificación
-        db.collection("companies").document(compania.text.toString())
+        db.collection("companies").document(compania)
             .set(hashMapOf("users" to FieldValue.arrayUnion(user)), SetOptions.merge())
             .addOnSuccessListener {
                 val toast =
@@ -211,12 +218,15 @@ class GestionUsuarios : AppCompatActivity() {
         val vacaciones = findViewById<View>(R.id.vacaciones) as EditText
         val telefono = findViewById<View>(R.id.telefono) as EditText
         val jefe = findViewById<View>(R.id.jefe) as EditText
-        val compania = findViewById<View>(R.id.compania) as EditText
+        val bundle = getIntent().getExtras();
+        var compania = ""
+        if (bundle != null && !bundle.isEmpty)
+            compania = bundle.getString("company").toString()
         val contrasena = findViewById<View>(R.id.contrasena) as EditText
         val administrador = findViewById<View>(R.id.administrador) as Spinner
         val esAdministrador = administrador.selectedItem.toString().equals("Sí")
 
-        db.collection("companies").document(compania.text.toString()).get().addOnSuccessListener { documentSnapshot ->
+        db.collection("companies").document(compania).get().addOnSuccessListener { documentSnapshot ->
             val company = documentSnapshot.toObject<Company>()
             if (company != null) {
                 val user = getUserByEmail(company, email.text.toString())
@@ -229,7 +239,7 @@ class GestionUsuarios : AppCompatActivity() {
                     user.password = contrasena.text.toString()
                     user.admin = esAdministrador
 
-                    db.collection("companies").document(compania.text.toString()).update("users",company.users).addOnSuccessListener {
+                    db.collection("companies").document(compania).update("users",company.users).addOnSuccessListener {
                         val toast =
                             Toast.makeText(v?.context, "Usuario editado con éxito", Toast.LENGTH_SHORT)
                         toast.show()

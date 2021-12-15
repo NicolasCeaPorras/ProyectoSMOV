@@ -71,7 +71,7 @@ class NewCompaniesActivity : progressMobileStepper() {
         val md = MessageDigest.getInstance("MD5")
         val hashPassword =  BigInteger(1, md.digest(password.toByteArray())).toString(16).padStart(32, '0')
         if (this.userAmin == null){
-            this.userAmin = User(name, user_name,"", email,hashPassword,phone_number,admin=true,active_input = null,holiday_periods = null, scheduled_tasks = null, time_records = null)
+            this.userAmin = User(name, user_name,"", email,hashPassword,phone_number,admin=true,active_input = null,holiday_periods = null,diasVac = 21,scheduled_tasks = null, time_records = null)
             this.company!!.users = mutableListOf<User>()
             this.company!!.users!!.add(this.userAmin!!)
         } else {
@@ -80,7 +80,6 @@ class NewCompaniesActivity : progressMobileStepper() {
             this.userAmin!!.email = email
             this.userAmin!!.password = hashPassword
             this.userAmin!!.phone_number = phone_number
-            this.userAmin!!.diasVac = 21
             this.company!!.users!![0] = this.userAmin!!
         }
 
