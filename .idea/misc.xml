@@ -36,6 +36,7 @@
         <entry key="app/src/main/res/layout/activity_agenda.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/activity_task_of_day.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_task_off_day.xml" value="0.2558876811594203" />
+        <entry key="app/src/main/res/layout/fragment_administator.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/fragment_task_off_day.xml" value="0.2558876811594203" />
       </map>
     </option>

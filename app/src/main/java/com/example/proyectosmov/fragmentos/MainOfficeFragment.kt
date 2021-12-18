@@ -56,10 +56,12 @@ class MainOfficeFragment : stepperFragment() {
 
         if((newCompanyOfficeName == "") or (newCompanyOfficeAddressStreetr == "") or (newCompanyOfficeAddressPostalCode.length != 5) or (newCompanyOfficeAddressApartment == "") or (newCompanyOfficeAddressPostalCode == "")or (newCompanyOfficeAddressLocation == "")or (newCompanyOfficeAddressProvince == "")or (newCompanyOfficeAddressCountry == "")){
             Toast.makeText(activity,"Todos los campos son obligatorios", Toast.LENGTH_LONG).show()
+            return false
         } else {
             (activity as NewCompaniesActivity?)!!.activityOffice(newCompanyOfficeAddressApartment, newCompanyOfficeAddressCountry, newCompanyOfficeAddressLocation, newCompanyOfficeAddressPostalCode,newCompanyOfficeAddressProvince, newCompanyOfficeAddressStreetr,newCompanyOfficeName)
+            return true
         }
-        return true
+
     }
 
     companion object {

@@ -74,12 +74,19 @@ class CompanyDataFragment : stepperFragment() {
         var newCompanyPhoneNumber : EditText = rootView!!.findViewById<EditText>(R.id.newCompanyPhoneNumber) as EditText
         var companyPhoneNumber : String = newCompanyPhoneNumber.text.toString()
 
-        if((companyName == "") or (companyPhoneNumber == "") or (companyPhoneNumber.length < 9) or (sectorSelected == "")){
+
+        if((companyName == "") or (companyPhoneNumber == "") or (sectorSelected == "")){
             Toast.makeText(activity,"Todos los campos son obligatorios", Toast.LENGTH_LONG).show()
+            return false
+        }
+        if((companyPhoneNumber.length < 9)){
+            Toast.makeText(activity,"Numero de telefono incorrecto", Toast.LENGTH_LONG).show()
+            return false
         } else {
             (activity as NewCompaniesActivity?)!!.activityCompany(companyName,sectorSelected,companyPhoneNumber)
+            return true
         }
-        return true
+
     }
 
     companion object {

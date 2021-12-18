@@ -67,11 +67,11 @@ class NewCompaniesActivity : progressMobileStepper() {
         }
     }
 
-    fun activityAdminUser(name : String, user_name : String, email : String, password : String, phone_number : String){
+    fun activityAdminUser(name : String, user_name : String, email : String, password : String, phone_number : String, vacances : Int){
         val md = MessageDigest.getInstance("MD5")
         val hashPassword =  BigInteger(1, md.digest(password.toByteArray())).toString(16).padStart(32, '0')
         if (this.userAmin == null){
-            this.userAmin = User(name, user_name,"", email,hashPassword,phone_number,admin=true,active_input = null,holiday_periods = null,diasVac = 21,scheduled_tasks = null, time_records = null)
+            this.userAmin = User(name, user_name,"", email,hashPassword,phone_number,admin=true,active_input = null,holiday_periods = null,diasVac = vacances,scheduled_tasks = null, time_records = null)
             this.company!!.users = mutableListOf<User>()
             this.company!!.users!!.add(this.userAmin!!)
         } else {

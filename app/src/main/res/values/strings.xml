@@ -60,6 +60,7 @@
     <string name="newCompanyAdminEmail">Email: </string>
     <string name="newCompanyAdminUserName">Nombre de Usuario: </string>
     <string name="newCompanyAdminPassword">Contraseña: </string>
+    <string name="newCompanyAdminVacances">Días de vacaciones: </string>
 
 
     <string name="CondicionesDeRegistroTitle">Al dar a siguiente aceptará las siguientes condiciones: </string>

@@ -50,14 +50,20 @@ class AdministatorFragment : stepperFragment() {
         var newCompanyAdminEmail : String = rootView!!.findViewById<EditText>(R.id.newCompanyAdminEmail).text.toString()
         var newCompanyAdminUserName : String = rootView!!.findViewById<EditText>(R.id.newCompanyAdminUserName).text.toString()
         var newCompanyAdminPassword : String = rootView!!.findViewById<EditText>(R.id.newCompanyAdminPassword).text.toString()
+        var newCompanyAdminVacances : Int = rootView!!.findViewById<EditText>(R.id.newCompanyAdminVacances).text.toString().toInt()
 
 
-        if((newCompanyAdminName == "") or (newCompanyAdminPhoneNumber == "") or (newCompanyAdminPhoneNumber.length < 9) or (newCompanyAdminEmail == "") or (newCompanyAdminUserName == "")or (newCompanyAdminPassword == "")){
+        if((newCompanyAdminName == "") or (newCompanyAdminPhoneNumber == "") or (newCompanyAdminPhoneNumber.length < 9) or (newCompanyAdminEmail == "") or (newCompanyAdminUserName == "")or (newCompanyAdminPassword == "")or (newCompanyAdminVacances == null)){
             Toast.makeText(activity,"Todos los campos son obligatorios", Toast.LENGTH_LONG).show()
-        } else {
-            (activity as NewCompaniesActivity?)!!.activityAdminUser(newCompanyAdminName,newCompanyAdminUserName,newCompanyAdminEmail,newCompanyAdminPassword,newCompanyAdminPhoneNumber)
+            return false
         }
-        return true
+        if((newCompanyAdminPhoneNumber.length < 9)){
+            Toast.makeText(activity,"Número de teléfono inválido", Toast.LENGTH_LONG).show()
+            return false
+        } else {
+            (activity as NewCompaniesActivity?)!!.activityAdminUser(newCompanyAdminName,newCompanyAdminUserName,newCompanyAdminEmail,newCompanyAdminPassword,newCompanyAdminPhoneNumber,newCompanyAdminVacances)
+            return true
+        }
     }
 
     companion object {
