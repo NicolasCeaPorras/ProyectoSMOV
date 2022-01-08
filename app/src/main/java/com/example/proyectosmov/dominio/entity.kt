@@ -73,7 +73,7 @@ fun getUserCount(comp : Company): Int{
     return contador
 }
 
-//Devuelve la lista de listas de Oficinas
+//Devuelve la lista de listas de Oficinas de una Empresa en un array
 fun getListOffice(comp : Company): ArrayList<String> {
     val arr : ArrayList<String>
     arr = ArrayList();
@@ -147,7 +147,7 @@ fun gettasksByUserAndDate(user : User, date : Date) : MutableList<ScheduledTask>
     return scheduled_tasks_return
 }
 
-//Metodo para obtener los dias disponibles de vacaciones de un usuario
+//Metodo para obtener los dias disponibles actuales de vacaciones de un usuario
 fun getDiasDispVac( dias: Int ,user: User) : Int{
     var diasDisp : Int = dias
     //Log.i("getDiasDispVac", "No llegan los dias ")

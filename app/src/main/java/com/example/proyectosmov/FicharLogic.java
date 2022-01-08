@@ -125,7 +125,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
 
         vectorAnalogClock = findViewById(R.id.clock);
 
-        //customization
+        //customization of the clock, color, size, opacity, etc
         vectorAnalogClock.setCalendar(calendar)
                 //.setDiameterInDp(150)
                 .setOpacity(1.0f)
@@ -133,7 +133,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                 .setColor(Color.BLACK);
 
 
-        //Actualizar Spinner
+        //Actualizar Spinner con las oficinas de la base de datos
         sLista = findViewById(R.id.selOficina);
 
 
@@ -144,8 +144,8 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                 Company comp = documentSnapshot.toObject(Company.class);
                 if (comp != null) {
                     Log.i("FicharLog", "Dentro del object Company Entrada");
+                    //obtenemos el array con todas las oficinas y lo pasamos al spinner para que se complete
                     arrayList = getListOffice(comp);
-                    Log.w(TAG, "Actualizada listas de oficinas: "+arrayList.get(0));
                     arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
                     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sLista.setAdapter(arrayAdapter);
@@ -164,7 +164,10 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
         sLista.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //Actualizado el tiempo cuando se selecciona para eliminar el Bug #01 del Reloj.
+                /*Actualizado el tiempo cuando se selecciona para eliminar el Bug #01 del Reloj.
+                El bug era que cuando se seleccionaba una oficina el reloj se reiniciaba, para ello el cambio
+                que se realiza es que cada vez que se selecciona una oficina se crea una nueva instancia del reloj para no peder la
+                hora actual*/
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.HOUR,0);
                 vectorAnalogClock.setCalendar(calendar);
@@ -173,8 +176,8 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             public void onNothingSelected(AdapterView <?> parent) {
             }
         });
-        //Comprobar si existe entradaFichar y salidaFichar en la BD anteriormente.
-        //TESTEADO Y FUNCIONAL
+        //Obtenemos datos de la sesión guardados en la Base de datos y si hay hora de entrada en el input guardado
+        //Se cambia el botón de Entrada a Salida
         docRef = mDatabase.collection("companies").document(company);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                               @Override
@@ -190,18 +193,16 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                                                               hEntrada.setText(null);
                                                               hSalida.setText(null);
                                                               entrada.setText("Entrada");
-                                                              //arrayAdapter.notifyDataSetChanged();
-
                                                           } else {
                                                               Log.i(TAG, "Existe un activeInput, boton a Salida...");
-                                                              //Damos formato a la hora
+                                                              //Damos formato a la hora de forma legible
                                                               Date inHour = user.getActive_input().getStart_hour();
                                                               String inTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(inHour);
                                                               //Cambiamos la vista
                                                               hEntrada.setText(inTime);
                                                               hSalida.setText(null);
                                                               entrada.setText("Salida");
-                                                              //Guardamos el valor de la hora de entrada y la fecha de creación
+                                                              //Guardamos el valor de la hora de entrada y la fecha de creación y lo actualizamos posteriormente en la base de datos
                                                               dateEntrada = user.getActive_input().getStart_hour();
                                                               dateCreacion = user.getActive_input().getCreation_date();
                                                           }
@@ -221,10 +222,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                                                   }
                                               }
                                           });
-
-
     }
-
 
     private void actualizarHora() {
         activo = true;
@@ -233,13 +231,18 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        //Timer entre click para cada boton de 2 segundos
+        //Timer entre click para cada boton de 2 segundos para que no se produzcan errores de doble pulsación
         Button boton = findViewById(R.id.buttonFichar);
         boton.setEnabled(false);
         //Desactivación del boton 2 segundos
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             boton.setEnabled(true);
         }, 2000);
+        /*
+        Si en el botón pone "Salida", guardamos la hora en la que acaba de fichar y lo mostramos por pantalla en la zona inferior
+        Además el texto del botón cambia a "Entrada", una vez hecho esto tanto la hora de llegada y la creación de la fecha
+        Que estaban guardados en un input temporal y la hora de salida que acabamos de obtener y se guarda al completo en la Base de Datos.
+         */
         if (entrada.getText().toString().equals("Salida")) {
             Log.d(TAG, "onClicked: " + entrada.getText().toString());
             hora = Calendar.getInstance().getTime();
@@ -253,9 +256,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             stringBtnFichar.put("btnFichar",entrada.getText().toString());
             ficharSalida = Timestamp.now();
             horaSalida.put("salidaFichar",ficharSalida);
-
-
-            //CODIGO NUEVO  TESTEADO
+            //Guardar todos los valores de las fechas de entrada y salida de la oficina en la Base de Datos.
             DocumentReference docRef = mDatabase.collection("companies").document(company);
             docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
@@ -296,21 +297,16 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                                             Log.w(TAG, "Fallo al actualizar usuario", e);
                                         }
                                     });
-                             /*
-                             String oficina = sLista.getSelectedItem().toString();
-                             MessageDigest md = null;
-                             try {
-                                 md = MessageDigest.getInstance("MD5");
-                                 Number hashPassword =  BigInteger(1, md.digest(oficina.toByteArray())).toString(16).padStart(32, '0');
-                             } catch (NoSuchAlgorithmException e) {
-                                 e.printStackTrace();
-                             }
-                             */
                         }
                     }
                 }
             });
      }
+            /*
+        Si en el botón pone "Entrada", guardamos la hora en la que acaba de entrar a fichar y lo mostramos por pantalla en la zona inferior
+        Además el texto del botón cambia a "Salida", una vez hecho se guarda tanto la hora de llegada y la creación de la fecha
+        En un input temporal y se guarda en la Base de Datos.
+         */
         else if ( entrada.getText().toString().equals("Entrada")) {
             Log.d( TAG,"onClicked: "+entrada.getText().toString());
             hora = Calendar.getInstance().getTime();
@@ -323,7 +319,7 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
             Map<String, Object> horaEntrada = new HashMap<>();
             ficharEntrada = Timestamp.now();
             horaEntrada.put("entradaFichar",ficharEntrada);
-
+            //Guardar los valores de las fechas de entrada y fecha de cración de la hora para fichar en la oficina en la Base de Datos.
             DocumentReference docRef = mDatabase.collection("companies").document(company);
             docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
@@ -343,9 +339,6 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                              dateCreacion = ai.getCreation_date();
                              if (user.getActive_input() == null) {
                                  Log.i(TAG, "No existe activeInput, creando...");
-                                 //List<TimeRecord> lista = new ArrayList<>();
-                                 //user.setTime_records(lista);
-                                 //user.getTime_records().add(tiempoFichar);
                                  user.setActive_input(ai);
                              }
                              mDatabase.collection("companies").document(company).update("users", comp.getUsers()).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -360,17 +353,6 @@ public class FicharLogic extends AppCompatActivity implements View.OnClickListen
                                              Log.w(TAG, "Fallo al actualizar usuario", e);
                                          }
                                      });
-                             /*
-                             HASH NO FUNCIONAL
-                             String oficina = sLista.getSelectedItem().toString();
-                             MessageDigest md = null;
-                             try {
-                                 md = MessageDigest.getInstance("MD5");
-                                 Number hashPassword =  BigInteger(1, md.digest(oficina.toByteArray())).toString(16).padStart(32, '0');
-                             } catch (NoSuchAlgorithmException e) {
-                                 e.printStackTrace();
-                             }
-                             */
                          }
                      }
                 }

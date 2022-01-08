@@ -23,7 +23,7 @@ class VacacionesActivity : AppCompatActivity() {
     var selected_date : Date = Date()
     var selected_item : ScheduledTask? = null
     var Click= 0
-    var diasDisp= 21
+    var diasDisp= 21                //21 si el usuario es anterior a la creación de este campo para que no se produzcan errores
     var fechaSal = Date()
     var fechaReg = Date()
 
@@ -33,15 +33,12 @@ class VacacionesActivity : AppCompatActivity() {
         supportActionBar!!.hide()
         val bundle = getIntent().getExtras();
         if (bundle != null && !bundle.isEmpty) {
-            //Quitar comentarios para que sea dinamico
+            //Obtenemos el ID de la compania y el email del usuario de la pantalla anterior
             companyID = bundle.getString("company").toString()
             email = bundle.getString("email").toString()
 
         }
-        //Comentar para que sea dinamico
-        //companyID = "Pruebas"
-        //email = "email@pruebas.com"
-
+        // Enlazar views con sus respectivos IDs
         val calendarView =
             findViewById<com.applandeo.materialcalendarview.CalendarView>(R.id.vacaCalendario)
         val fechaSalView = findViewById<TextView>(R.id.fechSal)
@@ -84,13 +81,14 @@ class VacacionesActivity : AppCompatActivity() {
                 if (user != null) {
                     var diasVaca : Int = user.diasVac!!
                     //SI EL USUARIO NO TIENE DIAS ASIGNADOS PORQUE ES ANTIGUO
-                    //LE PONEMOS POR DEFECTO 14 (CAMBIAR EN EL FUTURO)
+                    //LE PONEMOS POR DEFECTO 14
+                    //(CON USUARIOS CREADOS NUEVOS NO HAY PROBLEMA, ESTO ES UN FIX POR SI EL USUARIO SE CREO ANTES QUE EL ULTIMO MENU DE CREAR USUARIO)
                     if(diasDisp==null) {
                         //Para testear si el usuario es antiguo
                         diasDisp = 14;
                     }else
                         Log.i("VacacionesAct", "Aqui llego")
-
+                    //Calculamos los dias disponibles actuales de un usuario a través de una función que resta los periodos que se han seleccionado en la app.
                     diasDisp = getDiasDispVac(diasVaca,user)
                     Log.i("VacacionesAct", "Diasdisp de la BD: "+diasDisp.toString())
                     diasDispView.text = diasDisp.toString()
@@ -127,6 +125,7 @@ class VacacionesActivity : AppCompatActivity() {
 
         cal1.time = fechaSal
         cal2.time = fechaReg
+        //Error si el dia de llegada es menor que el dia de salida.
         if (cal2.get(Calendar.DAY_OF_YEAR) < (cal1.get(Calendar.DAY_OF_YEAR)))
             Toast.makeText(
                 this,
@@ -134,7 +133,8 @@ class VacacionesActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         else {
-            //Calculo del los dias disponibles que le quedan al usuario de vacaciones una vez ha seleccionado las fechas
+            //Calculo del los dias disponibles que le quedan al usuario de vacaciones una vez ha seleccionado las fechas.
+                //Si el usuario selecciona más días de los que tiene avisa del error.
             if (diasDisp < (cal2.get(Calendar.DAY_OF_YEAR)) - (cal1.get(Calendar.DAY_OF_YEAR))) {
                 Toast.makeText(this, "¡Error, has escogido demasiados dias!", Toast.LENGTH_SHORT)
                     .show()
@@ -151,7 +151,7 @@ class VacacionesActivity : AppCompatActivity() {
                 boton.isEnabled = false;
                 //Desactivación del boton 2 segundos y activación sucesiva
                 Handler(Looper.getMainLooper()).postDelayed({ boton.isEnabled = true }, 2000)
-
+                //Se guarda en la Base de Datos los valores de la fecha de creación, periodo de vacaciones y dia disponible.
                 val db = FirebaseFirestore.getInstance()
                 val docRef = db.collection("companies").document(companyID)
                 docRef.get().addOnSuccessListener { documentSnapshot ->
@@ -190,9 +190,7 @@ class VacacionesActivity : AppCompatActivity() {
                                 }
                         }
                     }
-
                 }
-
             }
         }
     }
