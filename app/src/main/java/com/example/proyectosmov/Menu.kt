@@ -30,14 +30,15 @@ class Menu : AppCompatActivity() {
         //Extraigo del bundle el email y lo escribo en el TextView correspondiente
         email.text = bundle!!.getString("email")
         val compania = bundle!!.getString("company")
-        //Busco la compañia en la base de datos
+        //Busco la compañia en la base de datos y extraigo el usuario que ha iniciado sesion
         db.collection("companies").document(compania.toString()).get().addOnSuccessListener { documentSnapshot ->
             val company = documentSnapshot.toObject<Company>()
             if (company != null) {
                 val usuario = getUserByEmail(company, email.text.toString())
 
-                //Una vez tenemos la clase usuarios escribo su contenido en los TextView correspondiente
+                //Una vez tenemos el usuario escribo sus datos en los campos correspondientes
                 nombre.text = "¡Bienvenido, " + usuario?.name as String? + "!"
+                //Si el usuario es administrador se le habilita la opcion de gestion de usuarios y se le pone una foto distinta
                 if (usuario?.admin!!) {
                     imagenPerfil.setImageDrawable(resources.getDrawable(R.drawable.icono_administrador))
                     //Asigno propiedades al layout para hacerlo visible y utilizable.
@@ -51,12 +52,13 @@ class Menu : AppCompatActivity() {
                         startActivity(Intent(this@Menu, LogIn::class.java))
                     })
                 } else
+                    //si no es administrador se le pone una imagen de usuario normal y no se le habilita la opcion
                     imagenPerfil.setImageDrawable(resources.getDrawable(R.drawable.icono_perfil))
             }
         }
     }
 
-    //Evento que al hacer click te lleva a la pantalla de fichar
+    //Evento que al hacer click te lleva a la actividad de fichar
     fun clickFichar(v: View?) {
         val bundle = this.intent.extras
         val compania = bundle!!.getString("company")
@@ -71,7 +73,7 @@ class Menu : AppCompatActivity() {
         FirebaseAuth.getInstance().signOut()
         startActivity(Intent(this@Menu, LogIn::class.java))
     }
-    //Evento que al hacer click te lleva a la pantalla de organigrama
+    //Evento que al hacer click te lleva a la actividad de organigrama
     fun clickOrganigrama(v: View?) {
         val bundle = this.intent.extras
         val compania = bundle!!.getString("company")
@@ -79,7 +81,7 @@ class Menu : AppCompatActivity() {
         intent.putExtra("company",compania)
         startActivity(intent)
     }
-    //Evento que al hacer click te lleva a la pantalla de Agenda
+    //Evento que al hacer click te lleva a la actividad de Agenda
     fun clickAgenda(v: View?) {
         val bundle = this.intent.extras
         val compania = bundle!!.getString("company")
@@ -90,7 +92,7 @@ class Menu : AppCompatActivity() {
         startActivity(intent)
     }
 
-    //Evento que al hacer click te cierra la sesion y te redirecciona a la pantalla de Vacaciones
+    //Evento que al hacer click te lleva a la actividad de Vacaciones
     fun clickVacaciones(v: View?) {
         val bundle = this.intent.extras
         val compania = bundle!!.getString("company")
@@ -101,7 +103,7 @@ class Menu : AppCompatActivity() {
         startActivity(intent)
     }
 
-    //Evento que al hacer click te lleva a la pantalla de gestion de usuarios
+    //Evento que al hacer click te lleva a la actividad de gestion de usuarios
     //Unicamente accesible si el usuario que ha iniciado sesion es administrador
     fun clickGestionUsuarios(v: View?){
         val bundle = this.intent.extras
@@ -111,7 +113,7 @@ class Menu : AppCompatActivity() {
         startActivity(intent)
 
     }
-    //Evento que al hacer click te lleva a la pantalla de mi presencia
+    //Evento que al hacer click te lleva a la actividad de TimeSheet
     fun clickMiPresencia(v: View?) {
         val bundle = this.intent.extras
         val compania = bundle!!.getString("company")
